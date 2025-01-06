@@ -2,7 +2,7 @@
 
 ---
 ### Grafische Darstellung der Backends und ihrer Web-Services mit API's
-![Vorläufige Systemarchitektur](BildSystem.jpeg)
+![Vorläufige Systemarchitektur](Pictures/BildSystem.jpeg)
 
 #### Geschäftsschicht:
 Der Business Layer zeigt, wie Benutzer (Clients) mit dem System interagieren, z.B. über die Webanwendung oder die Konsole. Er beschreibt Rollen wie den optionalen Benutzer und stellt den Zugriff auf das System über Schnittstellen dar.
