@@ -1,0 +1,10 @@
+type Course {
+  id: ID!
+  name: String!
+  description: String
+  instructor: String
+}
+
+type Query {
+  allCourses: [Course]
+}

@@ -1,9 +1,10 @@
 package edu.fra.uas.Course_Management.model;
 
 public class File {
+
     private long id;
     private String name;
-    
+
     public File(long id, String name) {
         this.id = id;
         this.name = name;
