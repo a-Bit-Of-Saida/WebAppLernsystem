@@ -1,0 +1,13 @@
+# Represents a task with all relevant properties (Object(type) Task)
+type Task {
+    id: ID!                  # Unique ID of the task (always required!)
+    title: String!           # Title of the task (always required!)
+    description: String      # Description of the task
+    assignee: String         # Person assigned to the task
+}
+
+# Contains all query options
+type Query {
+    ToDoList: [Task!]!        #Liste aller Aufgaben
+
+}
