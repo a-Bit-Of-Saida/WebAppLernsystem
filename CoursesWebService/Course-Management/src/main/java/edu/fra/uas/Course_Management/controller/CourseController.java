@@ -57,4 +57,15 @@ public class CourseController {
         return CourseService.getCourseById(id);
     }
 
+    @MutationMapping
+    public Course addCourse(@Argument String description, @Argument String name, @Argument String instructor) {
+        log.debug("addUser() is called");
+        Course course = new Course(description, name, instructor);
+        return CourseService.createCourse(course);  
+    }
+    @QueryMapping (name="courseByName")
+    public Course getCourseByName(@Argument String name) {
+        log.debug("getCourseByName() is called");
+        return CourseService.getCourseByName(name);
+    }
 }

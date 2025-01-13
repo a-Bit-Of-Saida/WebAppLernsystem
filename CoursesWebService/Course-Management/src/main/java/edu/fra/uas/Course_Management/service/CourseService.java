@@ -75,4 +75,14 @@ public class CourseService {
         log.debug("getCourse: " + id);
         return courseRepository.get(id);
     }
+
+    public Course getCourseByName(String name) {
+        log.debug("getCourseByName: " + name);
+        for (Course course : courseRepository.values()) {
+            if (course.getName().equals(name)) {
+                return course;
+            }
+        }
+        return null;
+    }
 }

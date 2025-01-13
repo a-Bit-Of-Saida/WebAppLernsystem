@@ -28,5 +28,6 @@ public class InitData {
         Course course = new Course("Algebra", "Mathe", "Herr Müller");
         courseService.createCourse(course);
 
+        log.debug("### Data initialized ###");
     }
 }

@@ -15,8 +15,10 @@ type Course {
 type Query {
   allCourses: [Course]!
   courseById(id: ID!): Course
+  courseByName(name: String!): Course
 }
 
 type Mutation{
   addFileToCourse(id: ID!, fileName: String!, fileDescription: String!): Course
+  addCourse(name: String!, description: String!, instructor: String!): Course
 }
