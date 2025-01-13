@@ -3,6 +3,10 @@ package edu.fra.uas.Course_Management.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class represents a Course with its details and associated files.
+ */
+
 public class Course {
 
     private long id;
@@ -56,5 +60,10 @@ public class Course {
 
     public void setFiles(List<File> files) {
         this.files = files;
+    }
+
+    // Adds a file to the course 
+    public void addFile(File file) {
+        this.files.add(file);
     }
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,21 @@ public class CourseController {
             courses.add(course);
         }
         return courses;
+    }
+
+    // The GraphQL mutation for adding a file to a course
+    @MutationMapping
+    public Course addFileToCourse(@Argument Long id, @Argument String fileName, @Argument String fileDescription) {
+        log.debug("addFileToCourse() is called");
+        return CourseService.addFileToCourse(id, fileName, fileDescription);
+    }
+
+
+    // The GraphQL query for retrieving a course by its ID
+    @QueryMapping(name="courseById")
+    public Course getCourseById(@Argument Long id) {
+        log.debug("getCourseById() is called");
+        return CourseService.getCourseById(id);
     }
 
 }

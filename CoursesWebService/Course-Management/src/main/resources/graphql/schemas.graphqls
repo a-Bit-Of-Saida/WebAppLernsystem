@@ -1,10 +1,22 @@
+type File {
+    id: ID!
+    name: String!
+    description: String!
+}
+
 type Course {
   id: ID!
   name: String!
   description: String
   instructor: String
+  files: [File]
 }
 
 type Query {
-  allCourses: [Course]
+  allCourses: [Course]!
+  courseById(id: ID!): Course
+}
+
+type Mutation{
+  addFileToCourse(id: ID!, fileName: String!, fileDescription: String!): Course
 }
