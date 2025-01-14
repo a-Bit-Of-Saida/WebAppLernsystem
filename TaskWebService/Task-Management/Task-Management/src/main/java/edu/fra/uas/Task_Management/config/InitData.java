@@ -34,6 +34,8 @@ import jakarta.annotation.PostConstruct;
             task.setDescription("Gpm Aufgabe überarbeiten");
             task.setTitle("GPM Abgabe");
             task.setAssignee("Noel Krüger");
+            task.setStatus("offen");
+            task.setDueDate("2025-01-25");
             taskService.createTask(task);
     
             // Second task
@@ -42,8 +44,20 @@ import jakarta.annotation.PostConstruct;
             task.setDescription("Lernzettel fertigstellen");
             task.setTitle("Internetrecht Lernzettel");
             task.setAssignee("Merve Cicek");
+            task.setStatus("In Bearbeitung");
+            task.setDueDate("2025-01-20");
             taskService.createTask(task);
     
+            //Third task
+            log.debug("create task Projektplan Web");
+            task = new Task();
+            task.setDescription("Projektplan erstellen");
+            task.setTitle("Projektplan Web");
+            task.setAssignee("Joachim Yaprak");
+            task.setStatus("abgeschlossen");
+            task.setDueDate("2025-01-13"); 
+            taskService.createTask(task);
+
         
             log.debug("### Data initialized ###");
         }
