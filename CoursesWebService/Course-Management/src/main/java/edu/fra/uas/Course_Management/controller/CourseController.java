@@ -44,7 +44,7 @@ public class CourseController {
 
     // The GraphQL query for retrieving a course by its ID
     @QueryMapping(name = "courseById")
-    public Course getCourseById(@Argument Long id) {
+    public Course getCourseById(@Argument long id) {
         log.debug("getCourseById() is called");
         return CourseService.getCourseById(id);
     }
@@ -62,7 +62,7 @@ public class CourseController {
 
     // The GraphQL mutation for adding a file to a course
     @MutationMapping
-    public Course addFileToCourse(@Argument Long id, @Argument String fileName, @Argument String fileDescription) {
+    public Course addFileToCourse(@Argument long id, @Argument String fileName, @Argument String fileDescription) {
         log.debug("addFileToCourse() is called");
         return CourseService.addFileToCourse(id, fileName, fileDescription);
     }
@@ -87,7 +87,7 @@ public class CourseController {
      * @param id The ID of the course to be deleted.
      */
     @MutationMapping
-    public Course deleteCourse(@Argument Long id) {
+    public Course deleteCourse(@Argument long id) {
         log.debug("deleteCourse() is called");
         Course course = CourseService.getCourseById(id);
         if (course != null) {
@@ -97,5 +97,29 @@ public class CourseController {
         } else {
             throw new RuntimeException("Course not found");
         }
+    }
+
+    // The GraphQL mutation for updating an existing course
+    @MutationMapping
+    public Course updateCourse(@Argument long id, @Argument String description, @Argument String name, @Argument String instructor) {
+        log.debug("updateCourse() is called");
+        Course course = CourseService.getCourseById(id);
+        // Check if the course exists
+        if (course == null) {
+            throw new RuntimeException("Course not found");
+        }
+        // Update the course description
+        if (description != null && !description.isEmpty()) {
+            course.setDescription(description);
+        }
+        // Update the course name
+        if (name != null && !name.isEmpty()) {
+            course.setName(name);
+        }
+        // Update the course instructor
+        if (instructor != null && !instructor.isEmpty()) {
+            course.setInstructor(instructor);
+        }
+        return CourseService.updateCourse(id, course);
     }
 }

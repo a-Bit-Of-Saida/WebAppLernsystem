@@ -97,4 +97,26 @@ public class CourseService {
         log.debug("deleteCourse: " + id);
         return courseRepository.remove(id);
     }
+
+    /**
+     * Updates an existing course.
+     *
+     * @return The updated course.
+     */
+    public Course updateCourse(long id, Course course) {
+        log.debug("updateCourse: " + course);
+        
+        Course existingCourse = courseRepository.get(id);
+
+        // If the course exists, update its details
+        if (existingCourse != null) {
+            existingCourse.setName(course.getName());
+            existingCourse.setDescription(course.getDescription());
+            existingCourse.setInstructor(course.getInstructor());
+            existingCourse.setFiles(course.getFiles());
+            courseRepository.put(id, existingCourse);
+            return existingCourse;
+        }
+        return null;
+    }
 }

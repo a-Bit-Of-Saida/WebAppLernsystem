@@ -36,6 +36,18 @@ public class InitData {
         Course course2 = new Course("Analysis", "Mathe", "Frau Schmidt");
         courseService.createCourse(course2);
 
+        log.debug("create course Business English");
+        Course course3 = new Course("Business Englsih", "English", "Frau Meyer");
+        courseService.createCourse(course3);
+
+        log.debug("create course Spanish History");
+        Course course4 = new Course("Spanish History", "Spanish", "Herr Gonzales");
+        courseService.createCourse(course4);
+
+         // Add a file to the course "Spanish History"
+         log.debug("add file to course Spanish History");
+         courseService.addFileToCourse(course.getId(), "La Historia de España: Edad Moderna", "Este es un PDF sobre el tema de la Historia de España.");
+
         log.debug("### Data initialized ###");
     }
 }
