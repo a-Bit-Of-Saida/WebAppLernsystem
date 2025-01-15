@@ -42,7 +42,7 @@ public class InitData {
         task.setTitle("Internetrecht Lernzettel");
         task.setAssignee("Merve Cicek");
         task.setStatus("In Bearbeitung");
-        task.setDueDate("2025-01-20");
+        task.setDueDate("2025-01-16");
         taskService.createTask(task);
 
         // Third task
@@ -52,7 +52,7 @@ public class InitData {
         task.setTitle("Projektplan Web");
         task.setAssignee("Joachim Yaprak");
         task.setStatus("abgeschlossen");
-        task.setDueDate("2025-01-13");
+        task.setDueDate("2025-01-15");
         taskService.createTask(task);
 
         log.debug("### Data initialized ###");

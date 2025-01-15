@@ -10,8 +10,7 @@ public class TaskManagementApplication {
 
 	// Entry point of the application
 	public static void main(String[] args) {
-		SpringApplication.run(TaskManagementApplication.class, args); //Start der Spring Boot-Anwendung
+		SpringApplication.run(TaskManagementApplication.class, args); // Start der Spring Boot-Anwendung
 	}
 
 }
-

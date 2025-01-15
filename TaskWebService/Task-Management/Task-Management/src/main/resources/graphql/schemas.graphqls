@@ -11,6 +11,7 @@ type Task {
 # Contains all query options
 type Query {
   ToDoList: [Task!]! # List of all tasks
+  taskDueToday: [Task] # List of tasks due today
 }
 
 # Represents mutations that change server data (add, delete) and return the resulting data

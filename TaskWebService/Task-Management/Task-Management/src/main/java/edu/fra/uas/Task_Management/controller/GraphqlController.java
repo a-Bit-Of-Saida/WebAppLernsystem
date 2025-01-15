@@ -35,4 +35,9 @@ public class GraphqlController {
         return tasks; // Returns the list
     }
 
+    @QueryMapping(name = "taskDueToday")
+    public List<Task> taskDueToday() {
+        log.debug("taskDueToday() is called");
+        return taskService.getTasksDueToday();
+    }
 }

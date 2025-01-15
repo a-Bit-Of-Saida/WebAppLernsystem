@@ -1,5 +1,7 @@
 package edu.fra.uas.Task_Management.service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,21 @@ import edu.fra.uas.Task_Management.repository.TaskRepository;
 public class TaskService {
 
     private List<Task> tasks = new ArrayList<>();
+
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(TaskService.class);
+
+    public List<Task> getTasksDueToday() {
+        log.debug("getTasksDueToday");
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        List<Task> tasksDueToday = new ArrayList<>();
+        for (Task task : taskRepository.values()) {
+            if (task.getdueDate() != null && LocalDate.parse(task.getdueDate(), formatter).equals(today)) {
+                tasksDueToday.add(task);
+            }
+        }
+        return tasksDueToday;
+    }
 
     @Autowired
     private TaskRepository taskRepository;
