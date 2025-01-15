@@ -28,6 +28,14 @@ public class InitData {
         Course course = new Course("Algebra", "Mathe", "Herr Müller");
         courseService.createCourse(course);
 
+        // Add a file to the course "Algebra"
+        log.debug("add file to course Algebra");
+        courseService.addFileToCourse(course.getId(), "Algebra Präsentation", "Dies ist eine Präsentation zum Thema Algebra.");
+
+        log.debug("create course Analysis");
+        Course course2 = new Course("Analysis", "Mathe", "Frau Schmidt");
+        courseService.createCourse(course2);
+
         log.debug("### Data initialized ###");
     }
 }

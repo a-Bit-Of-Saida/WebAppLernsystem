@@ -38,12 +38,11 @@ public class CourseService {
         return courseRepository.get(course.getId());
     }
 
-     /**
+    /**
      * Retrieves all courses from the repository.
      *
      * @return An iterable collection of all courses.
      */
-    
     public Iterable<Course> getAllCourses() {
         log.debug("getAllCourses");
         return courseRepository.values();
@@ -51,10 +50,9 @@ public class CourseService {
 
     /**
      * Adds a file to a course.
-     * 
+     *
      * @return The updated course.
      */
-
     public Course addFileToCourse(long courseId, String fileName, String fileDescription) {
         Course course = courseRepository.get(courseId);
         if (course != null) {
@@ -67,15 +65,19 @@ public class CourseService {
 
     /**
      * Retrieves a course by its ID.
-     * 
+     *
      * @return The course with the specified ID.
      */
-
     public Course getCourseById(long id) {
         log.debug("getCourse: " + id);
         return courseRepository.get(id);
     }
 
+    /**
+     * Retrieves a course by its name.
+     *
+     * @param name The name of the course.
+     */
     public Course getCourseByName(String name) {
         log.debug("getCourseByName: " + name);
         for (Course course : courseRepository.values()) {
@@ -84,5 +86,15 @@ public class CourseService {
             }
         }
         return null;
+    }
+
+    /**
+     * Deletes a course by its ID.
+     *
+     * @param id The ID of the course to be deleted.
+     */
+    public Course deleteCourse(long id) {
+        log.debug("deleteCourse: " + id);
+        return courseRepository.remove(id);
     }
 }

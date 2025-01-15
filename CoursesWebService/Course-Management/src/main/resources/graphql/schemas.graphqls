@@ -21,4 +21,5 @@ type Query {
 type Mutation{
   addFileToCourse(id: ID!, fileName: String!, fileDescription: String!): Course
   addCourse(name: String!, description: String!, instructor: String!): Course
+  deleteCourse(id: ID!): Course
 }

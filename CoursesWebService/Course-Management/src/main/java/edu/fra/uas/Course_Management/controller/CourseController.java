@@ -42,6 +42,24 @@ public class CourseController {
         return courses;
     }
 
+    // The GraphQL query for retrieving a course by its ID
+    @QueryMapping(name = "courseById")
+    public Course getCourseById(@Argument Long id) {
+        log.debug("getCourseById() is called");
+        return CourseService.getCourseById(id);
+    }
+
+    /**
+     * Query to get a course by its name.
+     *
+     * @param name The name of the course.
+     */
+    @QueryMapping(name = "courseByName")
+    public Course getCourseByName(@Argument String name) {
+        log.debug("getCourseByName() is called");
+        return CourseService.getCourseByName(name);
+    }
+
     // The GraphQL mutation for adding a file to a course
     @MutationMapping
     public Course addFileToCourse(@Argument Long id, @Argument String fileName, @Argument String fileDescription) {
@@ -49,23 +67,35 @@ public class CourseController {
         return CourseService.addFileToCourse(id, fileName, fileDescription);
     }
 
-
-    // The GraphQL query for retrieving a course by its ID
-    @QueryMapping(name="courseById")
-    public Course getCourseById(@Argument Long id) {
-        log.debug("getCourseById() is called");
-        return CourseService.getCourseById(id);
-    }
-
+    /**
+     * Mutation to add a new course.
+     *
+     * @param description The description of the course.
+     * @param name The name of the course.
+     * @param instructor The instructor of the course.
+     */
     @MutationMapping
     public Course addCourse(@Argument String description, @Argument String name, @Argument String instructor) {
         log.debug("addUser() is called");
         Course course = new Course(description, name, instructor);
-        return CourseService.createCourse(course);  
+        return CourseService.createCourse(course);
     }
-    @QueryMapping (name="courseByName")
-    public Course getCourseByName(@Argument String name) {
-        log.debug("getCourseByName() is called");
-        return CourseService.getCourseByName(name);
+
+    /**
+     * Mutation to delete a course by its ID.
+     *
+     * @param id The ID of the course to be deleted.
+     */
+    @MutationMapping
+    public Course deleteCourse(@Argument Long id) {
+        log.debug("deleteCourse() is called");
+        Course course = CourseService.getCourseById(id);
+        if (course != null) {
+            CourseService.deleteCourse(id);
+            log.debug("delete course");
+            return course;
+        } else {
+            throw new RuntimeException("Course not found");
+        }
     }
 }
