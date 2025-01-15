@@ -1,18 +1,30 @@
 # Represents a task with all relevant properties (Object(type) Task)
 type Task {
-    id: ID!                  # Unique ID of the task (always required!)
-    title: String!           # Title of the task (always required!)
-    description: String      # Description of the task
-    assignee: String         # Person assigned to the task
-    status: String!          # Status is always required
-    dueDate: String          # Due Date of the task
-
-
-
+  id: ID! # Unique ID of the task (always required!)
+  title: String! # Title of the task (always required!)
+  description: String # Description of the task
+  assignee: String # Person assigned to the task
+  status: String! # Status is always required
+  dueDate: String # Due Date of the task
 }
 
 # Contains all query options
 type Query {
-    ToDoList: [Task!]!        #Liste aller Aufgaben
+  ToDoList: [Task!]! # List of all tasks
+}
 
+# Represents mutations that change server data (add, delete) and return the resulting data
+# The return type in all of the three cases is Task
+type Mutation {
+  # Adds a new task to the system
+  addTask(
+    title: String!
+    description: String!
+    assignee: String!
+    status: String = "offen"
+    dueDate: String
+  ): Task
+
+  # Removes an existing task from the system
+  deleteTask(id: ID!): Task
 }
