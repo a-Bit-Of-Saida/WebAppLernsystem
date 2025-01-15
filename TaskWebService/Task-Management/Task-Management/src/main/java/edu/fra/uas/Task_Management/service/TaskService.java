@@ -54,4 +54,9 @@ public class TaskService {
         return taskRepository.values(); // Returns all tasks from the repository
     }
 
+    public Task deleteTask(long id) {
+        log.debug("deleteTask: " + id);
+        return taskRepository.remove(id);
+    }
+
 }

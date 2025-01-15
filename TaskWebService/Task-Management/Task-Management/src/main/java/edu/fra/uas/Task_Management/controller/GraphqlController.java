@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
@@ -39,5 +41,27 @@ public class GraphqlController {
     public List<Task> taskDueToday() {
         log.debug("taskDueToday() is called");
         return taskService.getTasksDueToday();
+    }
+
+    @MutationMapping
+    public Task addTask(@Argument String description, @Argument String title) {
+        log.debug("addTask() is called");
+        Task task = new Task();
+        task.setDescription(description);
+        task.setTitle(title);
+        task.setAssignee(title);
+        return taskService.createTask(task);
+    }
+
+    @MutationMapping
+    public Task deleteTask(@Argument Long id) {
+        log.debug("deleteTask() is called");
+        Task task = taskService.deleteTask(id);
+        if (task != null) {
+            taskService.deleteTask(id);
+            return task;
+        } else {
+            throw new RuntimeException("Task not found !");
+        }
     }
 }
