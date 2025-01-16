@@ -54,6 +54,26 @@ public class GraphqlController {
     }
 
     @MutationMapping
+    public Task updateTask(@Argument Long id, @Argument String description, @Argument String title,
+            @Argument String assignee) {
+        log.debug("updateTask() is called");
+        Task task = taskService.getTaskById(id);
+        if (task == null) {
+            throw new RuntimeException("Task not found !");
+        }
+        if (description != null && !description.isEmpty()) {
+            task.setDescription(description);
+        }
+        if (title != null && !title.isEmpty()) {
+            task.setTitle(title);
+        }
+        if (assignee != null && !assignee.isEmpty()) {
+            task.setAssignee(assignee);
+        }
+        return taskService.updateTask(task);
+    }
+
+    @MutationMapping
     public Task deleteTask(@Argument Long id) {
         log.debug("deleteTask() is called");
         Task task = taskService.deleteTask(id);

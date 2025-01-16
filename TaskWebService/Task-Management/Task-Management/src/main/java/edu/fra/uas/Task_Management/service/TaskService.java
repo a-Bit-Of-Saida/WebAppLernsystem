@@ -54,6 +54,20 @@ public class TaskService {
         return taskRepository.values(); // Returns all tasks from the repository
     }
 
+    // Method to call each task through their id
+    public Task getTaskById(long id) {
+        log.debug("getTask: " + id);
+        return taskRepository.get(id);
+    }
+
+    // Method to update the status of each task
+    public Task updateTask(Task user) {
+        log.debug("updateTask: " + user);
+        taskRepository.put(user.getId(), user);
+        return taskRepository.get(user.getId());
+    }
+
+    // Method to delete a task through their id
     public Task deleteTask(long id) {
         log.debug("deleteTask: " + id);
         return taskRepository.remove(id);
