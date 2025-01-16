@@ -1,6 +1,6 @@
 package edu.fra.uas.Login_Management.loginService;
 
-import org.springframework.stereotype.Service;
+//import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.fra.uas.Login_Management.model.User;
