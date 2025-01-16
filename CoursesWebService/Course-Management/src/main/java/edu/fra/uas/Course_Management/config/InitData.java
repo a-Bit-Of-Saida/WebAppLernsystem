@@ -44,9 +44,9 @@ public class InitData {
         Course course4 = new Course("Spanish History", "Spanish", "Herr Gonzales");
         courseService.createCourse(course4);
 
-         // Add a file to the course "Spanish History"
-         log.debug("add file to course Spanish History");
-         courseService.addFileToCourse(course.getId(), "La Historia de España: Edad Moderna", "Este es un PDF sobre el tema de la Historia de España.");
+        // Add a file to the course "Spanish History"
+        log.debug("add file to course Spanish History");
+        courseService.addFileToCourse(course4.getId(), "La Historia de España: Edad Moderna", "Este es un PDF sobre el tema de la Historia de España.");
 
         log.debug("### Data initialized ###");
     }

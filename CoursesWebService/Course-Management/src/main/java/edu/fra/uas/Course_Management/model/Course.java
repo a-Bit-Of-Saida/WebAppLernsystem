@@ -66,4 +66,9 @@ public class Course {
     public void addFile(File file) {
         this.files.add(file);
     }
+
+    // Removes a file from the course by its id
+    public void removeFileById(long fileId) {
+        this.files.removeIf(file -> file.getId() == fileId);
+    }
 }

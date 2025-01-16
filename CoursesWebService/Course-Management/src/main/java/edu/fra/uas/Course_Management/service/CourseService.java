@@ -63,6 +63,20 @@ public class CourseService {
         return course;
     }
 
+     /**
+     * Deletes a file from a course by its ID.
+     * 
+     * @return The updated course.
+     */
+    public Course deleteFileFromCourse(long courseId, long fileId) {
+        Course course = courseRepository.get(courseId);
+        if (course != null) {
+            course.removeFileById(fileId);
+            courseRepository.put(courseId, course);
+        }
+        return course;
+    }
+
     /**
      * Retrieves a course by its ID.
      *
@@ -119,4 +133,6 @@ public class CourseService {
         }
         return null;
     }
+
+    
 }

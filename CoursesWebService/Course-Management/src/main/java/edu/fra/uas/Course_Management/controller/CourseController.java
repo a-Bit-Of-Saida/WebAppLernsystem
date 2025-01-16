@@ -67,6 +67,13 @@ public class CourseController {
         return CourseService.addFileToCourse(id, fileName, fileDescription);
     }
 
+    // The GraphQL mutation for deleting a file from a course
+    @MutationMapping
+    public Course deleteFileFromCourse(@Argument long id, @Argument long fileId) {
+        log.debug("deleteFileFromCourse() is called");
+        return CourseService.deleteFileFromCourse(id, fileId);
+    }
+
     /**
      * Mutation to add a new course.
      *

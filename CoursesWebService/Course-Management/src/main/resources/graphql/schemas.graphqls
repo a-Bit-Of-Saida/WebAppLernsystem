@@ -23,4 +23,5 @@ type Mutation{
   addCourse(name: String!, description: String!, instructor: String!): Course
   deleteCourse(id: ID!): Course
   updateCourse(id: ID!, name: String!, description: String!, instructor: String!): Course
+  deleteFileFromCourse(id: ID!, fileId: ID!): Course
 }
