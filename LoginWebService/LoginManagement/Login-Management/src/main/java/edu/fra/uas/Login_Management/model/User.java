@@ -1,5 +1,8 @@
 package edu.fra.uas.Login_Management.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 
     private String role;
@@ -7,6 +10,10 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+
+    public User(){
+        
+    }
 
     public User( String role, String firstName, String lastName, String email, String password) {
         this.role = role;
@@ -55,7 +62,7 @@ public class User {
     }
     @Override
     public String toString() {
-        return "User [rrole=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
+        return "User [role=" + role + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
                 + email + ", password=" + password + "]";
 
     }

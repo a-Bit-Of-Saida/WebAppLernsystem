@@ -1,11 +1,12 @@
 package edu.fra.uas.Login_Management.loginService;
 
-//import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.fra.uas.Login_Management.model.User;
 import java.util.ArrayList;
 
+@Service
 public class LoginService {
 
     @Autowired
@@ -19,10 +20,10 @@ public class LoginService {
     }
 
     
-    public boolean login(String role, String firstName, String lasName, String email, String password) {
+    public boolean login(String role, String firstName, String lastName, String email, String password) {
         
         for (User u : users) {
-            if (u.getRole().equals(role) && u.getFirstName().equals(firstName)&& u.getLastName().equals(lasName)&& u.getEmail().equals(email) && u.getPassword().equals(password)) {
+            if (u.getRole().equals(role) && u.getFirstName().equals(firstName)&& u.getLastName().equals(lastName)&& u.getEmail().equals(email) && u.getPassword().equals(password)) {
                 System.out.println("login successful");
                 return true;
             }
