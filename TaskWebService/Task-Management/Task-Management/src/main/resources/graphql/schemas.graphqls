@@ -4,7 +4,7 @@ type Task {
   title: String! # Title of the task (always required!)
   description: String # Description of the task
   assignee: String # Person assigned to the task
-  status: String! # Status is always required
+  status: String # Status is always required
   dueDate: String # Due Date of the task
 }
 
@@ -33,9 +33,9 @@ type Mutation {
   #Updating tasks, to get their current status (open,in progress, closed)
   updateTask(
     id: ID!
-    title: String!
-    description: String!
-    assignee: String!
+    title: String
+    description: String
+    assignee: String
     status: String
     dueDate: String
   ): Task
