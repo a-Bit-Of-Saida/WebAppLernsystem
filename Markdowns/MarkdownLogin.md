@@ -1,8 +1,26 @@
+## User Stories
+
+## Benutzeranmeldung
+
+Als Benutzer möchte ich mich mit meinen Anmeldeinformationen ( Rolle, Vorname und Nachname,E-Mail, Passwort) einloggen, um auf geschützte Bereiche der Anwendung zugreifen zu können.
+
+## Fehlerhafte Anmeldeversuche
+Als Benutzer möchte ich eine Fehlermeldung erhalten, wenn meine Anmeldeinformationen nicht korrekt sind, um zu wissen, dass ich die Eingaben überprüfen und korrigieren muss.
+
+
+## Zielsetzung für den Service
+Benutzeranmeldung validieren
+
+Als System möchte ich die Anmeldeinformationen eines Benutzers mit den gespeicherten Daten vergleichen, um sicherzustellen, dass der Benutzer korrekt authentifiziert ist.
+Fehlermeldungen im Falle von fehlerhaften Anmeldedaten
+
+Antworten auf erfolgreiche oder fehlerhafte Anmeldungen
+
+Als System möchte ich eine klare Bestätigung oder Fehlermeldung zurückgeben, damit der Benutzer weiß, ob die Anmeldung erfolgreich war oder nicht.
+
 # Benutzeranmeldung und Authentifizierungsservice
 
 In diesem Dokument werden drei Java-Klassen beschrieben, die zusammen einen Authentifizierungsservice bilden.
-
----
 
 ## 1. `User`-Klasse
 
