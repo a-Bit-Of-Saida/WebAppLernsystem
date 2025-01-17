@@ -20,6 +20,7 @@ public class TaskService {
 
     private List<Task> tasks = new ArrayList<>();
 
+    // Logger to log information
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(TaskService.class);
 
     public List<Task> getTasksDueToday() {
@@ -35,25 +36,41 @@ public class TaskService {
         return tasksDueToday;
     }
 
+    // Automatic injection of the TaskRepository
     @Autowired
     private TaskRepository taskRepository;
 
+    // Variable to manage the ID of the tasks
     private long nextTaskId = 1;
 
-    // Method to create a new task
+    // Method to create a new task and add it to the repository
     public Task createTask(Task user) {
-        user.setId(nextTaskId++);
+        user.setId(nextTaskId++); // Sets the ID of the task and adds 1 to the nextTaskId
         log.debug("createTask: " + user);
-        taskRepository.put(user.getId(), user);
-        return taskRepository.get(user.getId());
+        taskRepository.put(user.getId(), user); // Adds the task to the repository
+        return taskRepository.get(user.getId()); // Returns the created task
     }
 
-    // Method to retrieve all tasks
+    // Method to retrieve all tasks from the repository
     public Iterable<Task> getAllTasks() {
         log.debug("getAllTasks"); // Logs the retrieval of all tasks
         return taskRepository.values(); // Returns all tasks from the repository
     }
 
+    // Method to call each task through their id
+    public Task getTaskById(long id) {
+        log.debug("getTask: " + id);
+        return taskRepository.get(id);
+    }
+
+    // Method to update the status of each task
+    public Task updateTask(Task task) {
+        log.debug("updateTask: " + task);
+        taskRepository.put(task.getId(), task);
+        return taskRepository.get(task.getId());
+    }
+
+    // Method to delete a task through their id
     public Task deleteTask(long id) {
         log.debug("deleteTask: " + id);
         return taskRepository.remove(id);

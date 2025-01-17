@@ -4,13 +4,14 @@ type Task {
   title: String! # Title of the task (always required!)
   description: String # Description of the task
   assignee: String # Person assigned to the task
-  status: String! # Status is always required
+  status: String # Status is always required
   dueDate: String # Due Date of the task
 }
 
 # Contains all query options
 type Query {
   ToDoList: [Task!]! # List of all tasks
+  taskById(id: ID!): Task # Searching for a task through their id
   taskDueToday: [Task] # List of tasks due today
 }
 
@@ -28,4 +29,14 @@ type Mutation {
 
   # Removes an existing task from the system
   deleteTask(id: ID!): Task
+
+  #Updating tasks, to get their current status (open,in progress, closed)
+  updateTask(
+    id: ID!
+    title: String
+    description: String
+    assignee: String
+    status: String
+    dueDate: String
+  ): Task
 }
