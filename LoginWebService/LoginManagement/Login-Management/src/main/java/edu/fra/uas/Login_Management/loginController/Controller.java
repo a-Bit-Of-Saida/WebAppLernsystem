@@ -17,6 +17,7 @@ public class Controller {
     @Autowired
     private LoginService authService;
 
+    // login endpoint
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String role,@RequestParam String firstName, @RequestParam String lastName, @RequestParam String email, @RequestParam String password) {
         //boolean isValidUser = authService.login(role, firstName, lastName, email, password);

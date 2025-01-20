@@ -14,7 +14,8 @@ public class User {
     public User(){
         
     }
-
+    
+// Class constructor with parameters
     public User( String role, String firstName, String lastName, String email, String password) {
         this.role = role;
         this.firstName = firstName;
@@ -22,6 +23,8 @@ public class User {
         this.email = email;
         this.password = password;
 
+
+// getters and setters
     }
     public String getRole() {
         return role;
