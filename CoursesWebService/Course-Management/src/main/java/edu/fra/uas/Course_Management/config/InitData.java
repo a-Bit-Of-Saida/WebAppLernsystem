@@ -37,7 +37,7 @@ public class InitData {
         courseService.createCourse(course2);
 
         log.debug("create course Business English");
-        Course course3 = new Course("Business Englsih", "English", "Frau Meyer");
+        Course course3 = new Course("Business English", "English", "Frau Meyer");
         courseService.createCourse(course3);
 
         log.debug("create course Spanish History");
