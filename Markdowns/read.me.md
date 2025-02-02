@@ -5,10 +5,10 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
 ## Inhalte dieser read.me
 
 - [Installation](#installation)
-- [Nutzung](#Nutzung)
-- [Funktionen](#Funktionen)
-- [API Endpunkte](#API-Endpunkte)
-
+- [Nutzung](#nutzung)
+- [Funktionen](#funktionen)
+- [API Endpunkte](#api-endpunkte)
+- [Requests der Services](#requests-der-services)
 ## Installation
 
 1. Lade das Projekt runter
