@@ -1,5 +1,6 @@
 package edu.fra.uas.Task_Management.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -75,8 +76,8 @@ public class GraphqlController {
     public List<Task> getTasksDueToday() {
         log.debug("getTasksDueToday() is called");
         Iterable<Task> taskIter = taskService.getAllTasks();
-        return StreamSupport.stream(taskIter.spliterator(), parallel:false)
-                .filter(task -> task.getDueDate().equals(LocalDate.now().toString()))
+        return StreamSupport.stream(taskIter.spliterator(), false)
+                .filter(task -> task.getdueDate().equals(LocalDate.now().toString()))
                 .collect(Collectors.toList());// Returns the list of tasks due today
     }
 // Define a GraphQL mutation to add a new task

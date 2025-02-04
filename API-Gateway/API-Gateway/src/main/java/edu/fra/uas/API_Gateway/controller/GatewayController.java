@@ -1,13 +1,9 @@
 package edu.fra.uas.API_Gateway.controller;
 
-//import java.util.Collections;
 import java.util.Map;
 
-import edu.fra.uas.API_Gateway.exception.BadRequestException;
-import edu.fra.uas.API_Gateway.exception.InternalServerErrorException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -18,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ServerWebExchange;
+
+import edu.fra.uas.API_Gateway.exception.BadRequestException;
+import edu.fra.uas.API_Gateway.exception.InternalServerErrorException;
 
 @RestController
 @RequestMapping
@@ -43,6 +42,7 @@ public class GatewayController {
         } catch (IllegalArgumentException e) {
             logger.error("Error determining target URL", e);
             throw new BadRequestException("Invalid GraphQL query: " + e.getMessage());
+            
         }
         logger.info("Forwarding to URL: {}", targetUrl); // Debugging-Log
         return forwardRequest(targetUrl, headers, body, exchange.getRequest().getMethod().name());
@@ -88,7 +88,7 @@ public class GatewayController {
                 || body.contains("addFileToCourse") || body.contains("deleteFileFromCourse")) {
             logger.info("Routing to Course Service"); // Debugging-Log
             return coursesServiceUrl + "/graphql";
-        } else if (body.contains("Tasks") || body.contains("ToDoList") || body.contains("taskDueToday")
+        } else if (body.contains("tasksByUserId") || body.contains("ToDoList") || body.contains("taskDueToday")
                 || body.contains("addTask") || body.contains("deleteTask") || body.contains("updateTask")) {
             logger.info("Routing to Task Service"); // Debugging-Log
             return taskServiceUrl + "/graphql";
