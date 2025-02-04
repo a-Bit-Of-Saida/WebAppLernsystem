@@ -30,7 +30,7 @@ public class InitData {
         Task task = new Task();
         task.setDescription("Gpm Aufgabe überarbeiten");
         task.setTitle("GPM Abgabe");
-        task.setAssignee("Noel Krüger");
+        task.setAssignee(1L);
         task.setStatus("offen");
         task.setDueDate("2025-01-25");
         taskService.createTask(task);
@@ -40,7 +40,7 @@ public class InitData {
         task = new Task();
         task.setDescription("Lernzettel fertigstellen");
         task.setTitle("Internetrecht Lernzettel");
-        task.setAssignee("Merve Cicek");
+        task.setAssignee(2L);
         task.setStatus("In Bearbeitung");
         task.setDueDate("2025-01-16");
         taskService.createTask(task);
@@ -50,7 +50,7 @@ public class InitData {
         task = new Task();
         task.setDescription("Projektplan erstellen");
         task.setTitle("Projektplan Web");
-        task.setAssignee("Joachim Yaprak");
+        task.setAssignee(3L);
         task.setStatus("abgeschlossen");
         task.setDueDate("2025-01-15");
         taskService.createTask(task);

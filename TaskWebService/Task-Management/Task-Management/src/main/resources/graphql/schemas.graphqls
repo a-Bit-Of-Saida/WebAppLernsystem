@@ -13,6 +13,7 @@ type Query {
   ToDoList: [Task!]! # List of all tasks
   taskById(id: ID!): Task # Searching for a task through their id
   taskDueToday: [Task] # List of tasks due today
+  tasksByUserId(userId: ID!): [Task!]! # Defines the tasksByUserId query
 }
 
 # Represents mutations that change server data (add, delete) and return the resulting data
