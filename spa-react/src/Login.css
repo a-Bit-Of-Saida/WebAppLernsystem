@@ -82,3 +82,8 @@
     background-color: #004085;
     transform: scale(1);
   }
+
+  .error-message {
+    color: red;
+    margin-bottom: 15px;
+  }

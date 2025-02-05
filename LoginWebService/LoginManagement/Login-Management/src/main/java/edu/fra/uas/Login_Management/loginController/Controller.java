@@ -37,12 +37,11 @@ public class Controller {
 
         // Return user ID if login is successful
         if (user != null) {
-            return ResponseEntity.ok(Collections.singletonMap("message", "login successful"));
+            return ResponseEntity.ok(Map.of("message", "login successful", "userId", user.getId()));
         } else {
             // Return error message if login is unsuccessful
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Collections.singletonMap("message", "login invalid/unsuccessful"));
         }
     }
-
 }

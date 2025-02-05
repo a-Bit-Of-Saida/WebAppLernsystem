@@ -1,10 +1,10 @@
 package edu.fra.uas.Login_Management.loginService;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 
-//Import the user model to use the variables, getters, and settes
 import edu.fra.uas.Login_Management.model.User;
-import java.util.ArrayList;
 
 @Service
 public class LoginService {
@@ -21,7 +21,6 @@ public class LoginService {
 
     // Method to verify login credentials
     public User login(String role, String firstName, String lastName, String email, String password) {
-
         for (User u : users) {
             if (u.getEmail().equals(email) && u.getPassword().equals(password)) {
                 System.out.println("login successful"); // Debugging-Log
@@ -31,5 +30,4 @@ public class LoginService {
         System.out.println("login failed"); // Debugging-Log
         return null;
     }
-
 }
