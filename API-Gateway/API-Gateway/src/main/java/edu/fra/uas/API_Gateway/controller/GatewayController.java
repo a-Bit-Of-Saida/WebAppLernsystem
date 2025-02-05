@@ -79,6 +79,30 @@ public class GatewayController {
         }
     }
 
+    // Forward CRUD operations for users
+    @RequestMapping("/auth/**")
+    public ResponseEntity<Object> forwardToUserService(ServerWebExchange exchange,
+            @RequestBody(required = false) String body,
+            @RequestHeader Map<String, String> headers) {
+        String targetUrl = loginServiceUrl + exchange.getRequest().getPath().toString();
+        HttpMethod method = exchange.getRequest().getMethod();
+
+        // Create HTTP headers
+        HttpHeaders httpHeaders = new HttpHeaders();
+        headers.forEach(httpHeaders::set);
+
+        // Create HTTP entity with headers and body
+        HttpEntity<String> requestEntity = new HttpEntity<>(body, httpHeaders);
+
+        try {
+            // Forward the request to the target URL
+            return restTemplate.exchange(targetUrl, method, requestEntity, Object.class);
+        } catch (Exception e) {
+            logger.error("Error forwarding request to {}: {}", targetUrl, e.getMessage(), e); // Debugging-Log
+            throw new InternalServerErrorException("Error forwarding request to " + targetUrl, e);
+        }
+    }
+
     private String determineTargetUrl(String body) {
 
         // Analyze the GraphQL query to determine the target service

@@ -1,16 +1,13 @@
 package edu.fra.uas.Login_Management.loginController;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import edu.fra.uas.Login_Management.loginService.LoginService;
 import edu.fra.uas.Login_Management.model.User;
@@ -42,6 +39,64 @@ public class Controller {
             // Return error message if login is unsuccessful
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(Collections.singletonMap("message", "login invalid/unsuccessful"));
+        }
+    }
+
+    // Create a new user
+    @PostMapping("/users")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User createdUser = authService.createUser(
+                user.getRole(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getPassword());
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    }
+
+    // Get a user by ID
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getUser(@PathVariable int id) {
+        User user = authService.getUser(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    // Get all users
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getAllUsers() {
+        List<User> users = authService.getAllUsers();
+        return ResponseEntity.ok(users);
+    }
+
+    // Update a user
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
+        User updatedUser = authService.updateUser(
+                id,
+                user.getRole(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getPassword());
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    // Delete a user
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable int id) {
+        boolean isDeleted = authService.deleteUser(id);
+        if (isDeleted) {
+            return ResponseEntity.ok(Collections.singletonMap("message", "User deleted successfully"));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("message", "User not found"));
         }
     }
 }
