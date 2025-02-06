@@ -4,6 +4,14 @@
 
 Der `CourseWebService` ist eine Spring Boot Anwendung, die es ermöglicht, Kurse zu verwalten. Die Anwendung bietet Funktionen zum Erstellen, Abrufen, Aktualisieren und Löschen von Kursen sowie zum Hinzufügen und Entfernen von Dateien zu/aus Kursen. Die Schnittstellen sind als GraphQL-APIs implementiert.
 
+## Inhalte dieser Markdown
+
+- [Hauptfunktionen](#hauptfunktionen)
+- [User Stories](#user-stories)
+- [Schnittstellendefinition](#schnittstellendefinition)
+- [Beispiel-Queries und -Mutations](#beispiel-queries-und--mutations)
+
+
 ## Funktionsbeschreibung
 
 ### Hauptfunktionen
@@ -94,6 +102,25 @@ query {
   }
 }
 ```
+#### Kurs nach Name abrufen
+```graphql
+query {
+  courseByName(name: "Mathematik") {
+    id
+    name
+    description
+    instructor
+    files {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+
+
 #### Kurs erstellen
 ```graphql
 mutation {
@@ -106,10 +133,75 @@ mutation {
 }
 ```
 
+#### Kurs erstellen 
+```graphql
+mutation {
+  addCourse(name: "Mathematik", description: "Einführung in die Mathematik", instructor: "Dr. Müller") {
+    id
+    name
+    description
+    instructor
+    files {
+      id
+      name
+      description
+    }
+  }
+}
+```
+#### Kurs aktualisieren
+```graphql
+mutation {
+  updateCourse(id: "1", name: "Mathematik", description: "Fortgeschrittene Mathematik", instructor: "Dr. Müller") {
+    id
+    name
+    description
+    instructor
+    files {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+#### Kurs löschen
+```graphql
+mutation {
+  deleteCourse(id: "1") {
+    id
+    name
+    description
+    instructor
+    files {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
 #### Datei zu Kurs hinzufügen
 ```graphql
 mutation {
   addFileToCourse(id: "1", fileName: "Mathe Skript", fileDescription: "Skript zur Vorlesung Mathematik") {
+    id
+    name
+    files {
+      id
+      name
+      description
+    }
+  }
+}
+```
+
+#### Datei von Kurs entfernen
+```graphql
+mutation {
+  deleteFileFromCourse(id: "1", fileId: "1") {
     id
     name
     files {
