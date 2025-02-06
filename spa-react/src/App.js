@@ -5,18 +5,26 @@ import CourseDetails from './CourseDetails';
 import TodoList from './ToDoList';
 import Dashboard from './Dashboard';
 import Login from './Login';
-import logo from './logo.svg'; // Import the logo image
-import './App.css'; // Import the CSS file for styling
+import newLogo from './new-logo.svg'; 
+import './App.css';
 
 function Home() {
   const navigate = useNavigate();
 
+  const handleLoginClick = () => {
+    const logo = document.querySelector('.App-logo');
+    logo.classList.add('zoom-fade');
+    setTimeout(() => {
+      navigate('/login');
+    }, 300); 
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Lernsystem🏫📝</p>
-        <button className="login-button" onClick={() => navigate('/login')}>
+        <img src={newLogo} className="App-logo" alt="logo" /> {/* Use the new logo with the App-logo class */}
+        <p className="lernsystem-text">Lernsystem🏫📝</p> {/* Apply the new CSS class */}
+        <button className="login-button" onClick={handleLoginClick}>
           Login
         </button>
       </header>

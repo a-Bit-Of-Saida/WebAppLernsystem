@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './Dashboard.css'; // Import the CSS file for styling
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -11,31 +12,23 @@ function Dashboard() {
   };
 
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      height: '100vh',
-      backgroundColor: '#282c34', 
-      color: 'white'
-    }}>
-      <h2>Dashboard für Benutzer {userId}</h2>
+    <div className="dashboard-container">
+      <h2 className="dashboard-title">Dashboard für Benutzer {userId}</h2>
       <button 
         onClick={() => navigate('/courses')}
-        style={{ margin: '10px', padding: '10px', fontSize: '16px' }}
+        className="dashboard-button"
       >
         Kurse
       </button>
       <button 
         onClick={() => navigate('/todo')}
-        style={{ margin: '10px', padding: '10px', fontSize: '16px' }}
+        className="dashboard-button"
       >
         To-Do-Liste
       </button>
       <button 
         onClick={handleLogout}
-        style={{ margin: '10px', padding: '10px', fontSize: '16px' }}
+        className="dashboard-button"
       >
         Abmelden
       </button>
