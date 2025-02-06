@@ -54,9 +54,19 @@ Dabei gibt es einen einzigen Endpoint : <mark>/graphql</mark>
 
 | Mutation Name        | Beschreibung                          | Parameter                                      | Rückgabewert                |
 |----------------------|---------------------------------------|------------------------------------------------|-----------------------------|
-| `addTask`          | Erstellt eine neue Aufgabe            | `title: String!, description: String!, assignee: String!, status: String, dueDate: String` | `Task`                    |
-| `updateTask`       | Aktualisiert eine vorhandene Aufgabe  | `id: ID!, title: String, description: String, assignee: String, status: String, dueDate: String` | `Task`                    |
+| `addTask`          | Erstellt eine neue Aufgabe            | `title: String!, description: String!, assignee: Long!, status: String, dueDate: String` | `Task`                    |
+| `updateTask`       | Aktualisiert eine vorhandene Aufgabe  | `id: ID!, title: String, description: String, assignee: Long, status: String, dueDate: String` | `Task`                    |
 | `deleteTask`       | Löscht eine Aufgabe                     | `id: ID!`                                      | `Task`                    |
+
+### Erklärung der Änderung des **Assignee-Attribut**
+Das ``assignee``-Attribut in der ``Task``-Klasse ist jetzt ein **Long**, um die **ID** des zugewiesenen Benutzers zu speichern. Dadurch wird eine eindeutige Zuordnung der Aufgaben zu Benutzern ermöglicht und erleichtert somit die Verwaltung und Abfrage von Aufgaben basierend auf dem zugewiesenen **Benutzer**.
+
+#### Beispiel für die Verwendung des ``assignee``-Attributs
+
+``` java
+Task task = new Task ();
+task.setAssignee(1L); // Setzt die ID des zugewiesenen Benutzers
+```
 
 ## User Stories
 
@@ -70,6 +80,37 @@ Dabei gibt es einen einzigen Endpoint : <mark>/graphql</mark>
 - Als **Benutzer** möchte ich **alle heute fälligen Aufgaben anzeigen**, um **meine dringenden Aufgaben zu priorisieren**.
 5. ***Aktualisierung von Aufgaben :***  
 - Als **Benutzer** möchte ich **den Status einer Aufgabe ändern**, um **den Fortschritt meiner Aufgaben zu beobachten**.
+6. ***Anzeige persönlicher Aufgaben :***
+- Als **Benutzer** möchte ich **nur meine eigenen Aufgaben angezeigt bekommen**, um **den Überblick zu behalten**.
+
+## Requests des Taskmanagement-Services
+- **POST** `/graphql`: Fetch tasks due today
+    ```json
+    {
+  "query": "query { taskDueToday { id title description assignee status dueDate } }"
+    }
+    ```
+- **POST** `/graphql`: Add a new task
+    ```json
+    {
+  "query": "mutation AddTask($title: String!, $description: String!, $status: String!, $dueDate: String!, $assignee: String!) { addTask(title: $title, description: $description, status: $status, dueDate: $dueDate, assignee: $assignee) { id title description status dueDate } }",
+  "variables": { "title": "New Task", "description": "Task description", "status": "offen", "dueDate": "2023-12-31", "assignee": "1" }
+    }
+    ```
+- **POST** `/graphql`: Update a task
+    ```json
+    {
+  "query": "mutation UpdateTask($id: ID!, $title: String, $description: String, $status: String, $dueDate: String) { updateTask(id: $id, title: $title, description: $description, status: $status, dueDate: $dueDate) { id title description status dueDate } }",
+  "variables": { "id": "1", "title": "Updated Task", "description": "Updated description", "status": "in Bearbeitung", "dueDate": "2023-12-31" }
+    }
+    ```
+- **POST** `/graphql`: Delete a task
+    ```json
+    {
+  "query": "mutation DeleteTask($id: ID!) { deleteTask(id: $id) { id } }",
+  "variables": { "id": "1" }
+    }
+    ```
 
 
 
