@@ -54,7 +54,7 @@ function Login() {
   return (
     <div className="login-container">
       <button onClick={() => navigate("/")} className="home-button">Home</button>
-      <h2>Login-Seite</h2>
+      <h2>Bitte loggen Sie sich ein:</h2>
       <form onSubmit={handleSubmit} className="login-form">
         <label>
           E-Mail:
