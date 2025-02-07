@@ -262,16 +262,252 @@ Die `Controller`-Klasse stellt den REST-Endpunkt für die Benutzeranmeldung und 
     ```
 
 ---
+## Endpunkte
 
-## HTTP Statuscodes
+#### Benutzeranmeldung
+**POST /auth/login**
 
-- **200 OK**: Erfolgreiche Anmeldung.
-- **401 Unauthorized**: Ungültige Anmeldeinformationen.
+**Beschreibung:**
+Überprüft die Anmeldedaten eines Benutzers.
+
+**Request Body:**
+```json
+{
+  "email": "email@student.com",
+  "password": "password1234"
+}
+```
 
 ---
 
-## Verwendung
+#### Alle Benutzer abrufen
+**GET /auth/users**
 
-- Die `User`-Klasse wird für die Verwaltung von Benutzerdaten verwendet.
-- Die `LoginService`-Klasse verarbeitet die Anmeldung und prüft die Benutzerdaten.
-- Die `Controller`-Klasse stellt einen REST-Endpoint zur Verfügung, um die Benutzerdaten über HTTP zu validieren und eine Antwort zurückzugeben.
+**Beschreibung:**
+Gibt eine Liste aller Benutzer zurück.
+
+**Request Body:**
+_None_
+
+---
+
+#### Benutzer nach ID abrufen
+**GET /auth/users/{id}**
+
+**Beschreibung:**
+Ruft einen bestimmten Benutzer anhand seiner ID ab.
+
+**Request Body:**
+_None_
+
+---
+
+#### Neuen Benutzer erstellen
+**POST /auth/users**
+
+**Beschreibung:**
+Erstellt einen neuen Benutzer.
+
+**Headers:**
+`Content-Type: application/json`
+
+**Request Body:**
+```json
+{
+  "role": "Student",
+  "firstName": "Example",
+  "lastName": "Example",
+  "email": "123@example.com",
+  "password": "password123"
+}
+```
+
+---
+
+#### Benutzer aktualisieren
+**PUT /auth/users/{id}**
+
+**Beschreibung:**
+Aktualisiert die Daten eines bestehenden Benutzers.
+
+**Headers:**
+`Content-Type: application/json`
+
+**Request Body:**
+```json
+{
+  "role": "Student",
+  "firstName": "Example",
+  "lastName": "Example",
+  "email": "123@example.com",
+  "password": "password123"
+}
+```
+
+---
+
+#### Benutzer löschen
+**DELETE /auth/users/{id}**
+
+**Beschreibung:**
+Löscht einen Benutzer anhand seiner ID.
+
+**Request Body:**
+_None_
+
+---
+
+## Course-Service
+
+### Endpunkte
+
+#### Alle Kurse abrufen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "query { allCourses { id name description instructor } }"
+}
+```
+
+---
+
+#### Kurs nach ID abrufen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "query ($id: ID!) { courseById(id: $id) { id name description instructor } }",
+  "variables": { "id": "1" }
+}
+```
+
+---
+
+#### Kurs nach Name abrufen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "{ courseByName(name: \"Business English\") { id name description instructor files { id name description } } }"
+}
+```
+
+---
+
+#### Datei zu einem Kurs hinzufügen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation { addFileToCourse(id: \"1\", fileName: \"New File\", fileDescription: \"This is a new file.\") { id name files { id name description } } }"
+}
+```
+
+---
+
+#### Neuen Kurs hinzufügen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation { addCourse(name: \"New Course\", description: \"This is a new course.\", instructor: \"John Doe\") { id name description instructor } }"
+}
+```
+
+---
+
+#### Kurs löschen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation { deleteCourse(id: \"1\") { id name description instructor } }"
+}
+```
+
+---
+
+#### Kurs aktualisieren
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation { updateCourse(id: \"1\", name: \"Updated Course\", description: \"This is an updated course.\", instructor: \"Jane Doe\") { id name description instructor } }"
+}
+```
+
+---
+
+## Task-Service
+
+### Endpunkte
+
+#### Aufgaben eines Benutzers abrufen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "query GetUserTasks($userId: ID!) { tasksByUserId(userId: $userId) { id title description assignee status dueDate } }",
+  "variables": { "userId": "1" }
+}
+```
+
+---
+
+#### Aufgaben, die heute fällig sind
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "query { taskDueToday { id title description assignee status dueDate } }"
+}
+``` 
+
+---
+
+#### Neue Aufgabe hinzufügen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation AddTask($title: String!, $description: String!, $status: String!, $dueDate: String!, $assignee: String!) { addTask(title: $title, description: $description, status: $status, dueDate: $dueDate, assignee: $assignee) { id title description status dueDate } }",
+  "variables": { "title": "New Task", "description": "Task description", "status": "offen", "dueDate": "2023-12-31", "assignee": "1" }
+}
+```
+
+---
+
+#### Aufgabe aktualisieren
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation UpdateTask($id: ID!, $title: String, $description: String, $status: String, $dueDate: String) { updateTask(id: $id, title: $title, description: $description, status: $status, dueDate: $dueDate) { id title description status dueDate } }",
+  "variables": { "id": "1", "title": "Updated Task", "description": "Updated description", "status": "in Bearbeitung", "dueDate": "2023-12-31" }
+}
+```
+
+---
+
+#### Aufgabe löschen
+**POST /graphql**
+
+**Request Body:**
+```json
+{
+  "query": "mutation DeleteTask($id: ID!) { deleteTask(id: $id) { id } }",
+  "variables": { "id": "1" }
+}
+```
