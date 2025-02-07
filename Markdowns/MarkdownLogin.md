@@ -231,36 +231,7 @@ Die `Controller`-Klasse stellt den REST-Endpunkt für die Benutzeranmeldung und 
   1. Die `deleteUser`-Methode empfängt die Benutzer-ID als Pfadparameter.
   2. Die Benutzer-ID wird an den `LoginService` weitergegeben, um den Benutzer zu löschen.
   3. Gibt eine entsprechende Antwort zurück, je nachdem, ob der Benutzer erfolgreich gelöscht wurde oder nicht.
-
-
-### Beispielanfragen und Antworten
-
-1. **Erfolgreiche Anmeldung**:
-
-    **Anfrage**:
-    ```http
-    POST /auth/login?role=Student&firstName=User1&lastName=User1&email=email@user1.com&password=password2403
-    ```
-
-    **Antwort**:
-    ```text
-    HTTP/1.1 200 OK
-    login successful
-    ```
-
-2. **Fehlgeschlagene Anmeldung**:
-
-    **Anfrage**:
-    ```http
-    POST /auth/login?role=Prof&firstName=User3&lastName=User3&email=email@user3.com&password=password1234
-    ```
-
-    **Antwort**:
-    ```text
-    HTTP/1.1 401 Unauthorized
-    login invalid/unsuccessful
-    ```
-
+  
 ---
 ## Endpunkte
 
