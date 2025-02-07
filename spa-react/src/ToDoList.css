@@ -50,5 +50,90 @@
   background-color: #3a3a3a;
   transform: scale(1.05);
 }
+.edit-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
+.edit-task-form input,
+.edit-task-form textarea,
+.edit-task-form select,
+.edit-task-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-task-form button {
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-task-form button:hover {
+  background-color: #3a3a3a;
+  transform: scale(1.05);
+}
+.edit-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.edit-task-form input,
+.edit-task-form textarea,
+.edit-task-form select,
+.edit-task-form button {
+  width: calc(100% - 20px); /* 100% Breite minus Padding */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-task-form button {
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-task-form button:hover {
+  background-color: #3a3a3a;
+  transform: scale(1.05);
+}
+
+
+
+.edit-task-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.edit-task-form input,
+.edit-task-form textarea,
+.edit-task-form select,
+.edit-task-form button {
+  width: calc(100% - 20px); /* 100% Breite minus Padding */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-task-form button {
+  background-color: #000000;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
 
