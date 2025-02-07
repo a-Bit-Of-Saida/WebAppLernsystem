@@ -52,7 +52,7 @@ function TodoList() {
     }
   }, []);
 
-  const fetchTasksDueToday = async () => {
+  const fetchTasksDueToday = useCallback(async () => {
     try {
       const response = await axios.post(
         "http://localhost:8085/graphql",
@@ -63,26 +63,21 @@ function TodoList() {
                 id
                 title
                 description
-                assignee
                 status
                 dueDate
               }
             }
           `,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { headers: { "Content-Type": "application/json" } }
       );
-      console.log("Tasks due today fetched:", response.data.data.taskDueToday);
+
       setTodos(response.data.data.taskDueToday || []);
     } catch (error) {
-      console.error("Fehler beim Abrufen der Aufgaben für heute:", error);
-      setError('Fehler beim Abrufen der Aufgaben für heute');
+      console.error("❌ Fehler beim Abrufen der heute fälligen Aufgaben:", error);
+      setError("Fehler beim Abrufen der heute fälligen Aufgaben");
     }
-  };
+  }, []);
 
   const addTask = async () => {
     if (!newTask.title || !newTask.description || !newTask.dueDate) {
@@ -196,7 +191,6 @@ function TodoList() {
           <div style={{ marginBottom: "10px" }}>
             {["offen", "in Bearbeitung", "abgeschlossen"].map((status) => (
               <button
-              
                 key={status}
                 onClick={() => setNewTask({ ...newTask, status })}
                 style={{
@@ -242,9 +236,9 @@ function TodoList() {
         {todos.map((todo) => (
           <li key={todo.id} style={{ margin: "10px 0", padding: "20px", backgroundColor: "#555", borderRadius: "5px", position: "relative", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
             {editingTask === todo.id ? (
-              <>
-                <input type="text" value={editedTask.title} onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })} />
-                <textarea value={editedTask.description} onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })} />
+              <div className="edit-task-form">
+                <input type="text" placeholder="Titel" value={editedTask.title} onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })} />
+                <textarea placeholder="Beschreibung" value={editedTask.description} onChange={(e) => setEditedTask({ ...editedTask, description: e.target.value })} />
                 <input type="date" value={editedTask.dueDate} onChange={(e) => setEditedTask({ ...editedTask, dueDate: e.target.value })} />
                 <select
                   value={editedTask.status}
@@ -256,7 +250,7 @@ function TodoList() {
                 </select>
                 <button onClick={() => updateTask(todo.id, editedTask)}>✅ Speichern</button>
                 <button onClick={() => setEditingTask(null)}>❌ Abbrechen</button>
-              </>
+              </div>
             ) : (
               <>
                 <h4>{todo.title}</h4>
