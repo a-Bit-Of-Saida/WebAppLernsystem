@@ -1,25 +1,35 @@
-.dashboard-container {
+.todo-list-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #7a7a7a; 
   color: rgb(0, 0, 0);
   font-family: 'Source Code Pro', monospace; 
+  padding-top: 70px;
 }
 
-.dashboard-title {
+.todo-list-title {
   font-size: 2rem;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   padding: 10px 20px; 
   border: 2px solid rgb(0, 0, 0); 
   border-radius: 8px; 
   background-color: rgba(0, 0, 0, 0.2); 
 }
 
-.dashboard-button {
-  margin: 20px;
+.todo-list-content {
+  width: 80%;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.todo-list-button {
+  margin-top: 10px;
   padding: 15px 30px;
   font-size: 18px;
   cursor: pointer;
@@ -28,15 +38,17 @@
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  font-family: 'Source Code Pro', monospace;
-  width: 200px; /* Feste Breite für alle Buttons */
-  height: 50px; /* Feste Höhe für alle Buttons */
+  font-family: 'Source Code Pro', monospace; 
+  width: 200px; /* Feste Breite für den Button */
+  height: 50px; /* Feste Höhe für den Button */
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.dashboard-button:hover {
+.todo-list-button:hover {
   background-color: #3a3a3a;
   transform: scale(1.05);
 }
+
+

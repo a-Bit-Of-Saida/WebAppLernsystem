@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Courses.css'; 
 
 function Courses() {
   const [courses, setCourses] = useState([]);
@@ -25,6 +26,7 @@ function Courses() {
             'Content-Type': 'application/json'
           }
         });
+        console.log('API Response:', response.data); // Protokolliere die API-Antwort
         setCourses(response.data.data.allCourses);
       } catch (error) {
         console.error('Fehler beim Abrufen der Kurse:', error);
@@ -33,30 +35,30 @@ function Courses() {
 
     fetchCourses();
   }, []);
+
   const userId = localStorage.getItem("userId");
+
   return (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      alignItems: 'center', 
-      justifyContent: 'center', 
-      height: '100vh',
-      backgroundColor: '#282c34', 
-      color: 'white'
-    }}>
-      <h2>Kurse Seite</h2>
-      {courses.map(course => (
-        <button 
-          key={course.id} 
-          onClick={() => navigate(`/course/${course.id}`)}
-          style={{ margin: '10px', padding: '10px', fontSize: '16px' }}
-        >
-          {course.name}
-        </button>
-      ))}
+    <div className="courses-container">
+      <h2 className="courses-title">Kurse:</h2>
+      <div className="courses-buttons-container">
+        {courses.length > 0 ? (
+          courses.map(course => (
+            <button 
+              key={course.id} 
+              onClick={() => navigate(`/course/${course.id}`)}
+              className="courses-button"
+            >
+              {course.name}
+            </button>
+          ))
+        ) : (
+          <p>Keine Kurse verfügbar</p>
+        )}
+      </div>
       <button 
         onClick={() => navigate(`/dashboard/${userId}`)}
-        style={{ margin: '10px', padding: '10px', fontSize: '16px' }}
+        className="dashboard-button"
       >
         Zurück zum Dashboard
       </button>

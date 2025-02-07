@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import './CourseDetails.css'; 
 
 function CourseDetails() {
   const { id } = useParams();
@@ -27,12 +28,12 @@ function CourseDetails() {
               }
             }
           `,
-          variables: { id }, // Dynamische ID hier übergeben
+          variables: { id }
         },
         {
           headers: {
-            'Content-Type': 'application/json',
-          },
+            'Content-Type': 'application/json'
+          }
         }
       );
       setCourse(response.data.data.courseById);
@@ -46,41 +47,30 @@ function CourseDetails() {
   }, [id]);
 
   if (!course) {
-    return <div>Lade Kursdetails...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-        backgroundColor: "#282c34",
-        color: "white",
-      }}
-    >
-      <button onClick={() => navigate('/courses')} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
+    <div className="course-details-container">
+      <h2 className="course-details-title">{course.name}</h2>
+      <div className="course-details-content">
+        <p><strong>Beschreibung:</strong> {course.description}</p>
+        <p><strong>Instructor:</strong> {course.instructor}</p>
+        <h3>Files:</h3>
+        <ul>
+          {course.files.map(file => (
+            <li key={file.id}>
+              <strong>{file.name}</strong>: {file.description}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <button 
+        onClick={() => navigate('/courses')}
+        className="course-details-button"
+      >
         Zurück zu den Kursen
       </button>
-      <h2>{course.name}</h2>
-      <p>{course.description}</p>
-      <p>Instructor: {course.instructor}</p>
-      <h3>Files:</h3>
-      <ul>
-        {/* Sicherstellen, dass course.files existiert */}
-        {course.files?.length > 0 ? (
-          course.files.map((file) => (
-            <li key={file.id}>
-              <h4>{file.name}</h4>
-              <p>{file.description}</p>
-            </li>
-          ))
-        ) : (
-          <p>Keine Dateien vorhanden.</p>
-        )}
-      </ul>
     </div>
   );
 }

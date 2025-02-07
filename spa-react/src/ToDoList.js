@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import './ToDoList.css'; 
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -183,11 +184,11 @@ function TodoList() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", minHeight: "100vh", backgroundColor: "#282c34", color: "white", padding: "20px" }}>
-      <h2>To-Do Liste</h2>
+    <div className="todo-list-container">
+      <h2 className="todo-list-title">To-Do Liste</h2>
 
       {userId && (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#333", padding: "10px", borderRadius: "5px", marginBottom: "20px", width: "100%", maxWidth: "600px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", backgroundColor: "#555", padding: "10px", borderRadius: "5px", marginBottom: "20px", width: "100%", maxWidth: "600px" }}>
           <h3>Neue Aufgabe hinzufügen</h3>
           <input type="text" placeholder="Titel" value={newTask.title} onChange={(e) => setNewTask({ ...newTask, title: e.target.value })} />
           <textarea placeholder="Beschreibung" value={newTask.description} onChange={(e) => setNewTask({ ...newTask, description: e.target.value })} />
@@ -195,6 +196,7 @@ function TodoList() {
           <div style={{ marginBottom: "10px" }}>
             {["offen", "in Bearbeitung", "abgeschlossen"].map((status) => (
               <button
+              
                 key={status}
                 onClick={() => setNewTask({ ...newTask, status })}
                 style={{
@@ -217,22 +219,28 @@ function TodoList() {
         </div>
       )}
 
-      <button onClick={fetchTasksDueToday} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
+      <button 
+      className="todo-list-button"
+      onClick={fetchTasksDueToday} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
         Heute fällige Aufgaben
       </button>
 
-      <button onClick={() => fetchTodos(localStorage.getItem("userId"))} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
+      <button 
+      className="todo-list-button"
+      onClick={() => fetchTodos(localStorage.getItem("userId"))} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
         Alle Tasks
       </button>
 
-      <button onClick={() => navigate(`/dashboard/${userId}`)} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
+      <button 
+      className="todo-list-button"
+      onClick={() => navigate(`/dashboard/${userId}`)} style={{ marginBottom: "20px", padding: "10px 20px", fontSize: "16px" }}>
         Zurück zum Dashboard
       </button>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
       <ul style={{ width: "100%", maxWidth: "600px", listStyleType: "none", padding: "0" }}>
         {todos.map((todo) => (
-          <li key={todo.id} style={{ margin: "10px 0", padding: "20px", backgroundColor: "#444", borderRadius: "5px", position: "relative", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
+          <li key={todo.id} style={{ margin: "10px 0", padding: "20px", backgroundColor: "#555", borderRadius: "5px", position: "relative", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}>
             {editingTask === todo.id ? (
               <>
                 <input type="text" value={editedTask.title} onChange={(e) => setEditedTask({ ...editedTask, title: e.target.value })} />
