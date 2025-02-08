@@ -10,6 +10,7 @@ Der `CourseWebService` ist eine Spring Boot Anwendung, die es ermöglicht, Kurse
 - [User Stories](#user-stories)
 - [Schnittstellendefinition](#schnittstellendefinition)
 - [Beispiel-Queries und -Mutations](#beispiel-queries-und--mutations)
+- [Queries und Mutations im json-Format für Postman](#queries-und-mutations-im-json-format-für-postman)
 
 
 ## Funktionsbeschreibung
@@ -91,6 +92,7 @@ query {
   }
 }
 ```
+
 #### Kurs nach ID abrufen
 ```graphql
 query {
@@ -119,19 +121,6 @@ query {
 }
 ```
 
-
-
-#### Kurs erstellen
-```graphql
-mutation {
-  addCourse(name: "Mathematik", description: "Einführung in die Mathematik", instructor: "Dr. Müller") {
-    id
-    name
-    description
-    instructor
-  }
-}
-```
 
 #### Kurs erstellen 
 ```graphql
@@ -210,5 +199,59 @@ mutation {
       description
     }
   }
+}
+```
+
+### Queries und Mutations im json-Format für Postman
+
+#### Alle Kurse abrufen
+```json
+{
+  "query": "{ allCourses { id name description instructor } }"
+}
+```
+#### Kurs nach ID abrufen
+```json
+{
+  "query": "{ courseById(id: \"1\") { id name description instructor } }"
+}
+```
+
+#### Kurs nach Name abrufen
+```json
+{
+  "query": "{ courseByName(name: \"Mathematik\") { id name description instructor files { id name description } } }"
+}
+```
+#### Kurs erstellen
+```json
+{
+  "query": "mutation { addCourse(name: \"Mathematik\", description: \"Einführung in die Mathematik\", instructor: \"Dr. Müller\") { id name description instructor } }"
+}
+```
+#### Kurs aktualiseren
+```json
+{
+  "query": "mutation { updateCourse(id: \"1\", name: \"Mathematik\", description: \"Fortgeschrittene Mathematik\", instructor: \"Dr. Müller\") { id name description instructor files { id name description } } }"
+}
+```
+
+#### Kurs löschen
+```json
+{
+  "query": "mutation { deleteCourse(id: \"1\") { id name description instructor files { id name description } } }"
+}
+```
+#### Datei zu Kurs hinzufügen
+```json
+{
+  "query": "mutation { addFileToCourse(id: \"1\", fileName: \"Mathe Skript\", fileDescription: \"Skript zur Vorlesung Mathematik\") { id name files { id name description } } }"
+}
+```
+
+#### Datei von Kurs entfernen
+```json
+{
+  "query": "mutation { deleteFileFromCourse(id: \"1\", fileId: \"1\") { id name files { id name description } } }"
 }
 ```
