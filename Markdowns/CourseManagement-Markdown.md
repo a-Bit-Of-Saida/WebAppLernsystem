@@ -9,7 +9,6 @@ Der `CourseWebService` ist eine Spring Boot Anwendung, die es ermöglicht, Kurse
 - [Hauptfunktionen](#hauptfunktionen)
 - [User Stories](#user-stories)
 - [Schnittstellendefinition](#schnittstellendefinition)
-- [Beispiel-Queries und -Mutations](#beispiel-queries-und--mutations)
 - [Queries und Mutations im json-Format für Postman](#queries-und-mutations-im-json-format-für-postman)
 
 
@@ -79,160 +78,157 @@ Der `CourseWebService` ist eine Spring Boot Anwendung, die es ermöglicht, Kurse
 | `addFileToCourse`    | Fügt eine Datei zu einem Kurs hinzu   | `id: ID!, fileName: String!, fileDescription: String!` | `Course`                    |
 | `deleteFileFromCourse` | Entfernt eine Datei von einem Kurs  | `id: ID!, fileId: ID!`                         | `Course`                    |
 
-### Beispiel-Queries und -Mutations 
-
-#### Alle Kurse abrufen
-```graphql
-query {
-  allCourses {
-    id
-    name
-    description
-    instructor
-  }
-}
-```
-
-#### Kurs nach ID abrufen
-```graphql
-query {
-  courseById(id: "1") {
-    id
-    name
-    description
-    instructor
-  }
-}
-```
-#### Kurs nach Name abrufen
-```graphql
-query {
-  courseByName(name: "Mathematik") {
-    id
-    name
-    description
-    instructor
-    files {
-      id
-      name
-      description
-    }
-  }
-}
-```
-
-
-#### Kurs erstellen 
-```graphql
-mutation {
-  addCourse(name: "Mathematik", description: "Einführung in die Mathematik", instructor: "Dr. Müller") {
-    id
-    name
-    description
-    instructor
-    files {
-      id
-      name
-      description
-    }
-  }
-}
-```
-#### Kurs aktualisieren
-```graphql
-mutation {
-  updateCourse(id: "1", name: "Mathematik", description: "Fortgeschrittene Mathematik", instructor: "Dr. Müller") {
-    id
-    name
-    description
-    instructor
-    files {
-      id
-      name
-      description
-    }
-  }
-}
-```
-
-#### Kurs löschen
-```graphql
-mutation {
-  deleteCourse(id: "1") {
-    id
-    name
-    description
-    instructor
-    files {
-      id
-      name
-      description
-    }
-  }
-}
-```
-
-#### Datei zu Kurs hinzufügen
-```graphql
-mutation {
-  addFileToCourse(id: "1", fileName: "Mathe Skript", fileDescription: "Skript zur Vorlesung Mathematik") {
-    id
-    name
-    files {
-      id
-      name
-      description
-    }
-  }
-}
-```
-
-#### Datei von Kurs entfernen
-```graphql
-mutation {
-  deleteFileFromCourse(id: "1", fileId: "1") {
-    id
-    name
-    files {
-      id
-      name
-      description
-    }
-  }
-}
-```
 
 ### Queries und Mutations im json-Format für Postman
 
 #### Alle Kurse abrufen
 ```json
 {
-  "query": "{ allCourses { id name description instructor } }"
+  "query": "{ allCourses { id name description instructor files { id name description } } }"
 }
 ```
+#### Response
+```json
+{
+    "data": {
+        "allCourses": [
+            {
+                "id": "2",
+                "name": "Analysis",
+                "description": "Mathe",
+                "instructor": "Frau Schmidt",
+                "files": [
+                    {
+                        "id": "3",
+                        "name": "Mathe Skript",
+                        "description": "Skript zur Vorlesung Mathematik"
+                    }
+                ]
+            },
+            {
+                "id": "3",
+                "name": "Business English",
+                "description": "English",
+                "instructor": "Frau Meyer",
+                "files": []
+            },
+            {
+                "id": "4",
+                "name": "Spanish History",
+                "description": "Spanish",
+                "instructor": "Herr Gonzales",
+                "files": [
+                    {
+                        "id": "2",
+                        "name": "La Historia de España: Edad Moderna",
+                        "description": "Este es un PDF sobre el tema de la Historia de España."
+                    }
+                ]
+            },
+            {
+                "id": "5",
+                "name": "Einführung in die Mathematik",
+                "description": "Mathematik",
+                "instructor": "Dr. Müller",
+                "files": []
+            }
+        ]
+    }
+}
+```
+
 #### Kurs nach ID abrufen
 ```json
 {
-  "query": "{ courseById(id: \"1\") { id name description instructor } }"
+  "query": "{ courseById(id: \"1\") { id name description instructor files { id name description } } }"
+}
+```
+
+#### Response
+```json
+{
+    "data": {
+        "courseById": {
+            "id": "1",
+            "name": "Algebra",
+            "description": "Mathe",
+            "instructor": "Herr Müller"
+        }
+    }
 }
 ```
 
 #### Kurs nach Name abrufen
 ```json
 {
-  "query": "{ courseByName(name: \"Mathematik\") { id name description instructor files { id name description } } }"
+  "query": "{ courseByName(name: \"Algebra\") { id name description instructor files { id name description } } }"
 }
 ```
+#### Response
+```json
+{
+    "data": {
+        "courseByName": {
+            "id": "1",
+            "name": "Algebra",
+            "description": "Mathe",
+            "instructor": "Herr Müller",
+            "files": [
+                {
+                    "id": "1",
+                    "name": "Algebra Präsentation",
+                    "description": "Dies ist eine Präsentation zum Thema Algebra."
+                }
+            ]
+        }
+    }
+}
+```
+
 #### Kurs erstellen
 ```json
 {
   "query": "mutation { addCourse(name: \"Mathematik\", description: \"Einführung in die Mathematik\", instructor: \"Dr. Müller\") { id name description instructor } }"
 }
 ```
+#### Response
+```json
+{
+    "data": {
+        "addCourse": {
+            "id": "5",
+            "name": "Einführung in die Mathematik",
+            "description": "Mathematik",
+            "instructor": "Dr. Müller"
+        }
+    }
+}
+```
+
 #### Kurs aktualiseren
 ```json
 {
   "query": "mutation { updateCourse(id: \"1\", name: \"Mathematik\", description: \"Fortgeschrittene Mathematik\", instructor: \"Dr. Müller\") { id name description instructor files { id name description } } }"
+}
+```
+#### Response
+```json
+{
+    "data": {
+        "updateCourse": {
+            "id": "1",
+            "name": "Mathematik",
+            "description": "Fortgeschrittene Mathematik",
+            "instructor": "Dr. Müller",
+            "files": [
+                {
+                    "id": "1",
+                    "name": "Algebra Präsentation",
+                    "description": "Dies ist eine Präsentation zum Thema Algebra."
+                }
+            ]
+        }
+    }
 }
 ```
 
@@ -245,7 +241,26 @@ mutation {
 #### Datei zu Kurs hinzufügen
 ```json
 {
-  "query": "mutation { addFileToCourse(id: \"1\", fileName: \"Mathe Skript\", fileDescription: \"Skript zur Vorlesung Mathematik\") { id name files { id name description } } }"
+  "query": "mutation { addFileToCourse(id: \"2\", fileName: \"Mathe Skript\", fileDescription: \"Skript zur Vorlesung Mathematik\") { id name files { id name description } } }"
+}
+```
+
+#### Response
+```json
+{
+    "data": {
+        "addFileToCourse": {
+            "id": "2",
+            "name": "Analysis",
+            "files": [
+                {
+                    "id": "3",
+                    "name": "Mathe Skript",
+                    "description": "Skript zur Vorlesung Mathematik"
+                }
+            ]
+        }
+    }
 }
 ```
 
