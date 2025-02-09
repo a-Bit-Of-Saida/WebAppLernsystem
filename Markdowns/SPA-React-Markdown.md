@@ -12,35 +12,35 @@ Diese Markdown beschreibt die oberflächliche Struktur, einzelne Funktionen der 
 
 ## Struktur und Komponenten
 ### 1. **Startbildschirm**
-[Startbildschirm](Picture/Startbildschirm_SPA.png)
+![Startbildschirm](Picture/Startbildschirm_SPA.png)
 - Enthält das Logo des Lernsystems und eine Login-Schaltfläche.
 
 ### 2. **Login-Seite**
-[Login-Seite][Picture/Login_SPA.png]
+![Login-Seite](Picture/Login_SPA.png)
 - Benutzer können sich mit ihrer E-Mail-Adresse und einem Passwort einloggen.
 
 ### 3. **Dashboard**
-[Dashboard](Picture/Dashboard_SPA.png)
+![Dashboard](Picture/Dashboard_SPA.png)
 - Nach dem Login wird der Benutzer auf das Dashboard weitergeleitet.
 - Enthält Schaltflächen für den Zugriff auf Kurse, To-Do-Listen und die Abmeldefunktion.
 
 ### 4. **Kursübersicht**
-[Kursservice](Picture/Kursservice_SPA.png)
+![Kursservice](Picture/Kursservice_SPA.png)
 - Listet alle verfügbaren Kurse auf.
 - Benutzer können einzelne Kurse auswählen.
 
 ### 5. **Kursinhalte**
-[Kursinhalt](Picture/Kursinhalt_SPA.png)
+![Kursinhalt](Picture/Kursinhalt_SPA.png)
 - Zeigt detaillierte Informationen zu einem ausgewählten Kurs. ()
 - Enthält eine Beschreibung, den Kursleiter und verfügbare Dateien.
 
 ### 6. **To-Do-Liste**
-[To-Do-List](Picture/To-Do-List_SPA.png)
+![To-Do-List](Picture/To-Do-List_SPA.png)
 - Benutzer können Aufgaben hinzufügen, bearbeiten oder löschen.
 - Enthält Statusoptionen (offen, in Bearbeitung, abgeschlossen).
 
 ### 7. **Fälligkeit für Aufgaben**
-[Fälligkeit](Picture/FälligkeitTask_SPA.png)
+![Fälligkeit](Picture/FälligkeitTask_SPA.png)
 - Zeigt die Fälligkeitsdaten für Aufgaben an.
 - Integrierte Kalenderfunktion für Datumsauswahl.
 
