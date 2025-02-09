@@ -3,6 +3,16 @@
 ## Übersicht
 Das **Task-Management-Backend** ist zur Verwaltung von Aufgaben da. Es bietet dabei verschiedene Funktionen an, um einen genauen Überblick über geplante Aufgaben zu haben.  
 
+## Inhalte dieser Markdown
+
+- [Web-API-Technologie](#web-api-technologie)
+- [Hauptfunktionen](#hauptfunktionen)
+- [Erläuterung der einzelnen Klassen](#erläuterung-der-einzelnen-klassen)
+- [Queries](#queries)
+- [Mutationen](#mutationen)
+- [User Stories](#user-stories)
+- [Requests und Responses des Taskmanagement-Services](#requests-und-responses-des-taskmanagement-services)
+
 ## Web-API-Technologie
 
 Es wird GraphQL genutzt, um eine flexible Schnittstelle für die Interaktion mit den Aufgaben anzubieten. Es werden Queries und Mutationen ermöglicht.
@@ -83,36 +93,99 @@ task.setAssignee(1L); // Setzt die ID des zugewiesenen Benutzers
 6. ***Anzeige persönlicher Aufgaben :***
 - Als **Benutzer** möchte ich **nur meine eigenen Aufgaben angezeigt bekommen**, um **den Überblick zu behalten**.
 
-## Requests des Taskmanagement-Services
-- **POST** `/graphql`: Fetch tasks due today
+## Requests und Responses des Taskmanagement-Services
+>Alle POST-Operationen sind Requests (Anfragen) und die jeweiligen Responses (Antworten) sind direkt darunter angegeben.
+- **POST** `/graphql`: Heutige fällige Aufgaben **abrufen**
     ```json
     {
   "query": "query { taskDueToday { id title description assignee status dueDate } }"
     }
     ```
-- **POST** `/graphql`: Add a new task
+**Antwort:**
+```json
+{
+  "data": {
+      "taskDueToday": [
+          {
+              "id": "5",
+              "title": "New Task",
+              "description": "Task description",
+              "assignee": "1",
+              "status": "offen",
+              "dueDate": "2025-02-09"
+          }
+      ]
+  }
+}
+```
+- **POST** `/graphql`: Eine neue Aufgabe **hinzufügen**
     ```json
     {
   "query": "mutation AddTask($title: String!, $description: String!, $status: String!, $dueDate: String!, $assignee: String!) { addTask(title: $title, description: $description, status: $status, dueDate: $dueDate, assignee: $assignee) { id title description status dueDate } }",
-  "variables": { "title": "New Task", "description": "Task description", "status": "offen", "dueDate": "2023-12-31", "assignee": "1" }
+  "variables": { "title": "New Task", "description": "Task description", "status": "offen", "dueDate": "2025-02-09", "assignee": "1" }
     }
     ```
-- **POST** `/graphql`: Update a task
+  **Antwort:** 
+    ```json
+    {
+    "data": {
+        "addTask": {
+            "id": "5",
+            "title": "New Task",
+            "description": "Task description",
+            "status": "offen",
+            "dueDate": "2025-02-09"
+        }
+      }
+    }
+    ```
+
+
+
+
+- **POST** `/graphql`: Eine Aufgabe **aktualisieren**
     ```json
     {
   "query": "mutation UpdateTask($id: ID!, $title: String, $description: String, $status: String, $dueDate: String) { updateTask(id: $id, title: $title, description: $description, status: $status, dueDate: $dueDate) { id title description status dueDate } }",
-  "variables": { "id": "1", "title": "Updated Task", "description": "Updated description", "status": "in Bearbeitung", "dueDate": "2023-12-31" }
+  "variables": { "id": "5", "title": "New Task", "description": "Task description", "status": "offen", "dueDate": "2025-02-09" }
     }
     ```
-- **POST** `/graphql`: Delete a task
+    **Antwort:** 
+    ```json
+    {
+    "data": {
+        "updateTask": {
+            "id": "5",
+            "title": "New Task",
+            "description": "Task description",
+            "status": "offen",
+            "dueDate": "2025-02-09"
+        }
+      }
+    }
+    ```
+
+- **POST** `/graphql`: Eine Aufgabe **löschen**
     ```json
     {
   "query": "mutation DeleteTask($id: ID!) { deleteTask(id: $id) { id } }",
   "variables": { "id": "1" }
     }
     ```
+     **Antwort:** 
+    ```json
+    {
+    "data": {
+        "deleteTask": {
+            "id": "1"
+        }
+      }
+    }
+    ```
 
 
+
+**Hinweis:** Die Dollarzeichen (`$`) in den GraphQL-Requests sind Platzhalter für Variablen, die dynamische Werte in Abfragen und Mutationen einfügen und so eine flexible Datenverarbeitung ermöglichen.
 
 
 

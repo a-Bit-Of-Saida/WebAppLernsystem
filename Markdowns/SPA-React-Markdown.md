@@ -5,7 +5,7 @@ Diese Markdown beschreibt die oberflächliche Struktur, einzelne Funktionen der 
 
 ## Inhalte dieser Markdown
 
-- [Struktur und Komponenten](#strukturundkomponenten)
+- [Struktur und Komponenten](#struktur-und-komponenten)
 - [Technologische Basis](#technologische-basis)
 - [API Gateway](#api-gateway)
 - [Funktionen](#funktionen)
