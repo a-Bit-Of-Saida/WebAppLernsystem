@@ -9,6 +9,7 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
 - [Funktionen](#funktionen)
 - [API Endpunkte](#api-endpunkte)
 - [Requests der Services](#requests-der-services)
+  
 ## Installation
 
 1. Lade das Projekt runter
@@ -51,8 +52,7 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
 - **Login-Serivce**: `/auth/login`
 - **Course-Service:** `/graphql`
 - **Task-Service:** `/graphlq`  
-
-***  
+ 
 
 ## Requests der Services
 
@@ -67,59 +67,136 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
     }
     ```
 
----
 
-### Courses
+- **GET** `/auth/users`: All users
 
-- **POST** `/graphql`: Fetch all courses
+- **GET** `/auth/users/1`: User by ID
+  
+- **POST** `auth/users`: Create new user
   ```json
     {
-  "query": "query { allCourses { id name description instructor } }"
-    }
+  "role": "Student",
+  "firstName": "Example",
+  "lastName": "Example",
+  "email": "123@example.com",
+  "password": "password123"
+   }
+   ```
+  
+- **PUT** `auth/users/1`: Updates User
+  ```json
+    {
+    "role": "Student",
+    "firstName": "Updated",
+    "lastName": "Example",
+    "email": "123@example.com",
+    "password": "password123"
+   }
+   ```
+- **GET** `/auth/users/1`: Deletes User
+---
+### Courses
+
+- **POST** `/graphql`: All courses
+  ```json
+    {
+  "query": "query { allCourses { id name instructor } }"
+   }
     ```
 
-- **POST** `/graphql`: Fetch course details by ID
+- **POST** `/graphql`: Course by name
   ```json
   {
-    "query": "query ($id: ID!) { courseById(id: $id) { id name description instructor } }",
-    "variables": { "id": "1" }
-  }
+    "query": "{ courseByName(name: \"Algebra\") { id name description instructor files { id name description } } }"
+   }
   ```
-***
+
+- **POST** `/graphql`: Course by ID
+  ```json
+  {
+    "query": "{ courseById(id: \"3\") { id name description instructor files { id name description } } }"
+   }
+  ```
+
+
+- **POST** `/graphql`: Create course
+  ```json
+  {
+    "query": "mutation { addCourse(name: \"Mathematik\", description: \"Einführung in die Mathematik\", instructor: \"Dr. Müller\") { id name description instructor files { id name description } } }"
+   }
+  ```
+
+- **POST** `/graphql`: Update course
+  ```json
+    {
+       "query": "mutation { updateCourse(id: \"1\", name: \"Mathematik\", description: \"Fortgeschrittene Mathematik\", instructor: \"Dr. Müller\") { id name description instructor files { id name description } } }"
+   }
+  ```
+
+- **POST** `/graphql`: Delete course
+  ```json
+    {
+    "query": "mutation { deleteCourse(id: \"1\") { id name description instructor files { id name description } } }"
+   }
+  ```
+
+- **POST** `/graphql`: add file to course
+  ```json
+   {
+    "query": "mutation { addFileToCourse(id: \"1\", fileName: \"Mathe Skript\", fileDescription: \"Skript zur Vorlesung Mathematik\") { id name files { id name description } } }"
+   }
+  ```
+
+  - **POST** `/graphql`: delete file from course
+  ```json
+    {
+       "query": "mutation { addFileToCourse(id: \"1\", fileName: \"Mathe Skript\", fileDescription: \"Skript zur Vorlesung Mathematik\") { id name files { id name description } } }"
+   }
+  ```
+  ---
 ### To-Do List
 
 - **POST** `/graphql`: Fetch tasks by user ID (e.g. 1)
     ```json
     {
-  "query": "query GetUserTasks($userId: ID!) { tasksByUserId(userId: $userId) { id title description assignee status dueDate } }",
-  "variables": { "userId": "1" }
-    }
+    "query": "query GetUserTasks($userId: ID!) { tasksByUserId(userId: $userId) { id title description assignee status dueDate } }",
+    "variables": { "userId": "1" }
+   }
     ```
-- **POST** `/graphql`: Fetch tasks due today
+- **POST** `/graphql`: tasks due today
     ```json
     {
-  "query": "query { taskDueToday { id title description assignee status dueDate } }"
-    }
+    "query": "{ taskDueToday { id title description assignee status dueDate } }"
+   }
     ```
 - **POST** `/graphql`: Add a new task
     ```json
-    {
-  "query": "mutation AddTask($title: String!, $description: String!, $status: String!, $dueDate: String!, $assignee: String!) { addTask(title: $title, description: $description, status: $status, dueDate: $dueDate, assignee: $assignee) { id title description status dueDate } }",
-  "variables": { "title": "New Task", "description": "Task description", "status": "offen", "dueDate": "2023-12-31", "assignee": "1" }
-    }
+   {
+    "query": "mutation AddTask($title: String!, $description: String!, $assignee: String!, $status: String, $dueDate: String) { addTask(title: $title, description: $description, assignee: $assignee, status: $status, dueDate: $dueDate) { id title description assignee status dueDate } }",
+    "variables": { "title": "New Task", "description": "Task description", "assignee": "1", "status": "offen", "dueDate": "2025-02-09" }
+   }
     ```
 - **POST** `/graphql`: Update a task
     ```json
     {
-  "query": "mutation UpdateTask($id: ID!, $title: String, $description: String, $status: String, $dueDate: String) { updateTask(id: $id, title: $title, description: $description, status: $status, dueDate: $dueDate) { id title description status dueDate } }",
-  "variables": { "id": "1", "title": "Updated Task", "description": "Updated description", "status": "in Bearbeitung", "dueDate": "2023-12-31" }
-    }
+    "query": "mutation UpdateTask($id: ID!, $title: String, $description: String, $assignee: String, $status: String, $dueDate: String) { updateTask(id: $id, title: $title, description: $description, assignee: $assignee, status: $status, dueDate: $dueDate) { id title description assignee status dueDate } }",
+    "variables": { "id": "1", "title": "Updated Task", "description": "Updated description", "assignee": "1", "status": "in Bearbeitung", "dueDate": "2025-02-09" }
+   }
     ```
 - **POST** `/graphql`: Delete a task
     ```json
     {
-  "query": "mutation DeleteTask($id: ID!) { deleteTask(id: $id) { id } }",
-  "variables": { "id": "1" }
-    }
+    "query": "mutation DeleteTask($id: ID!) { deleteTask(id: $id) { id } }",
+    "variables": { "id": "1" }
+   }
     ```
+
+- **POST** `/graphql`: all tasks
+    ```json
+    {
+  "query": "{ ToDoList { id title description assignee status dueDate } }"
+   }
+    ```
+
+
 
