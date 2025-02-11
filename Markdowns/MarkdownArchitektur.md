@@ -2,7 +2,7 @@
 
 ---
 ### Grafische Darstellung der Backends, ihrer Web-Services mit API's und dem API Gateway
-![Endgültige Systemarchitektur](Picture/ArchitekturSystem.jpg)
+![Endgültige Systemarchitektur](Picture/Systemarchitektur.png)
 
 #### Übersicht
 Diese Markdown beschreibt die Systemarchitektur des Lernsystems, das aus mehreren Backend-Services besteht, die durch ein API Gateway mit dem Client verbunden wird. Die Architektur umfasst verschiedene Schichten, die jeweils spezifische Aufgaben erfüllen.
