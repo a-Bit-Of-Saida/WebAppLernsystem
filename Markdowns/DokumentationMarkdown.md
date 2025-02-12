@@ -7,14 +7,14 @@ Diese Dokumentation beschreibt die Entwicklung einer `webbasierten Lernanwendung
 
 ## Inhalte dieser Dokumentation
 
-- [Kapitel 1: **Projektbeschreibung**](#projektbeschreibung)
-- [Kapitel 2: **Aufgabenstellung und Anforderung an das System**](#aufgabenstellung-und-anforderung-an-das-system)
-- [Kapitel 3: **Hauptfunktionen**](#hauptfunktionen)
-- [Kapitel 4: **Erweiterte Funktionen**](#erweiterte-funktionen)
-- [Kapitel 5: **Architektur des Systems**](#architektur-des-systems)
-- [Kapitel 6: **Technische Komponenten**](#technische-komponenten)
-- [Kapitel 7: **Bedienungsanleitung**](#bedienungsanleitung)
-- [Kapitel 8: **Komplikationen**](#komplikationen)
+- [Kapitel 1: Projektbeschreibung](#1-projektbeschreibung)
+- [Kapitel 2: Aufgabenstellung und Anforderung an das System](#2-aufgabenstellung-und-anforderung-an-das-system)
+- [Kapitel 3: Hauptfunktionen](#3-hauptfunktionen)
+- [Kapitel 4: Erweiterte Funktionen](#4-erweiterte-funktionen)
+- [Kapitel 5: Architektur des Systems](#5-architektur-des-systems)
+- [Kapitel 6: Technische Komponenten](#6-technische-komponenten)
+- [Kapitel 7: Bedienungsanleitung](#7-bedienungsanleitung)
+- [Kapitel 8: Komplikationen](#8-komplikationen)
 
 ## 1. Projektbeschreibung
 
