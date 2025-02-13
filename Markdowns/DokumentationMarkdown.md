@@ -15,6 +15,7 @@ Diese Dokumentation beschreibt die Entwicklung einer `webbasierten Lernanwendung
 - [Kapitel 6: Technische Komponenten](#6-technische-komponenten)
 - [Kapitel 7: Bedienungsanleitung](#7-bedienungsanleitung)
 - [Kapitel 8: Komplikationen](#8-komplikationen)
+- [Kapitel 9: Quellen](#9-quellen)
 
 ## 1. Projektbeschreibung
 
@@ -128,7 +129,7 @@ Zu Beginn des Projekts funktionierte **GraphiQL** wie erwartet. Die verschiedene
 
 Zunächst versuchte die Gruppe sich mit einer Realisierung der Anwendung durch **SPA mit Angular** vertraut zu machen. Allerdings wurde insgesamt erkannt, dass auch mit Ausblick auf die restliche Zeit für das Projekt, die Realisierung zu kompliziert werden würde. Bereits bei den ersten Downloads kam es zu Problemen, wie Fehlermeldungen von VSC. Nach Vergleich mit React entschied die Gruppe sich die **SPA mit React** zu realisieren, da React einfacher zu verstehen war und auch beim Einrichten keine Probleme machte. Die Realisierung der **Single Page Application mit React** hatte deshalb zum Vorteil, dass sie nicht nur einfacher zu realisieren war, sondern es auch mehr Zeit zum Testen und Debuggen gab. Somit konnte die Gruppe sich stärker darauf fokussieren, eine **SPA** zu realisieren die ihren Anforderungen entspricht.
 
-#### **API-Gateway**
+### **API-Gateway**
 
 Bereits zu Beginn des Projekts entstanden erste Komplikationen mit dem **API-Gateway**. Der Aufbau und die allgemeine Architektur des API-Gateways waren der Gruppe relativ unklar, weswegen jedes Teammitglied dazu aufgefordert war eine eigenständige Recherche durchzuführen, um sich mit den Inhalten vertraut zu machen. Dadurch, konnte insgesamt ein Wissen für die Implementierung und Konfiguration des Gateways entwickelt werden. 
 Ein zentrales Problem, dass während der Implementierung des API-Gateways entstand, war das Routing der Anfragen an die korrekten Services. Dabei entstand die Idee der Methode `determineTargetUrl` für die GraphQL-Services. Anhand der übermittelten GraphQL-Query bzw. ihrer Notation, konnte das API-Gateway gezielt routen und das Problem behoben werden. 
@@ -136,3 +137,15 @@ Ein weiteres Problem bestand in der Rückgabe der Antworten vom Zielservice an d
 Deshalb wurden die drei CustomExceptions `BadRequestException`, `GlobalExceptionHandler`, `InternalServerErrorException` implementiert, durch die eine gezielte Fehlerbehandlung erreicht werden konnte.
 Die Optimierung des **API-Gateways** führte letztendlich zu einer stabileren Architektur und einer zuverlässigeren Kommunikation zwischen Client und Backend-Services.
 
+## 9. Quellen
+API Gateway:
+- https://youtu.be/hWRRdICvMNs?si=Ca7s5zzRIyAgvcga (zuletzt abgerufen: 20.01.2025 )
+- https://www.youtube.com/watch?v=KeZhT5pLn4c (zuletzt abgerufen: 21.01.2025)
+- https://www.youtube.com/watch?v=WjCRRDKAduA (zuletzt abgerufen: 21.01.2025)
+- https://github.com/cer/event-sourcing-examples/tree/master/java-spring/api-gateway-service (zuletzt abgerufen: 22.01.2025
+
+Spring Boot:
+- https://youtu.be/LSEYdU8Dp9Y?si=Vd-7oOD741n0m_ZE (zuletzt abgerufen: 10.01.2025)
+
+React:
+- https://www.youtube.com/watch?v=hd3Y8rPWbjU (zuletzt abgerufen: 6.02.2025)
