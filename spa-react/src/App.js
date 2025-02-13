@@ -8,22 +8,25 @@ import Login from './Login';
 import newLogo from './new-logo.svg'; 
 import './App.css';
 
+
+// Home component
 function Home() {
   const navigate = useNavigate();
 
+// Handle the click event on the login button
   const handleLoginClick = () => {
     const logo = document.querySelector('.App-logo');
-    logo.classList.add('zoom-fade');
-    setTimeout(() => {
-      navigate('/login');
-    }, 300); 
+    logo.classList.add('zoom-fade'); // Add animation class to logo
+    setTimeout(() => { 
+      navigate('/login'); // Navigate to login page after animation
+    }, 300); //Delay for animation
   };
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={newLogo} className="App-logo" alt="logo" /> {/* Use the new logo with the App-logo class */}
-        <p className="lernsystem-text">Lernsystem🏫📝</p> {/* Apply the new CSS class */}
+        <img src={newLogo} className="App-logo" alt="logo" /> {/*Logo of the Application */}
+        <p className="lernsystem-text">Lernsystem🏫📝</p> {/* Application title */}
         <button className="login-button" onClick={handleLoginClick}>
           Login
         </button>
@@ -32,16 +35,17 @@ function Home() {
   );
 }
 
+// Main App component
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard/:userId" element={<Dashboard />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route path="/course/:id" element={<CourseDetails />} />
-        <Route path="/todo" element={<TodoList />} />
+      <Route path="/" element={<Home />} /> {/* Home route */}
+        <Route path="/login" element={<Login />} /> {/* Login route */}
+        <Route path="/dashboard/:userId" element={<Dashboard />} /> {/* Dashboard route with userId parameter */}
+        <Route path="/courses" element={<Courses />} /> {/* Courses route */}
+        <Route path="/course/:id" element={<CourseDetails />} /> {/* Course details route with course id parameter */}
+        <Route path="/todo" element={<TodoList />} /> {/* Todo list route */}
       </Routes>
     </Router>
   );

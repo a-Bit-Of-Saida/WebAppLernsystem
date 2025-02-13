@@ -4,10 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import './CourseDetails.css'; 
 
 function CourseDetails() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const [course, setCourse] = useState(null);
+  const { id } = useParams(); // Get the course ID from the URL parameters
+  const navigate = useNavigate(); // Hook to navigate programmatically
+  const [course, setCourse] = useState(null); // State to store course details
 
+  // Function to fetch course details from the server
   const fetchCourseDetails = async () => {
     try {
       const response = await axios.post(
@@ -28,7 +29,7 @@ function CourseDetails() {
               }
             }
           `,
-          variables: { id }
+          variables: { id } // Pass the course ID as a variable
         },
         {
           headers: {
@@ -36,16 +37,18 @@ function CourseDetails() {
           }
         }
       );
-      setCourse(response.data.data.courseById);
+      setCourse(response.data.data.courseById); // Set the course details in state
     } catch (error) {
-      console.error('Fehler beim Abrufen der Kursdetails:', error);
+      console.error('Fehler beim Abrufen der Kursdetails:', error); // Log any errors
     }
   };
 
+  // Fetch course details when the component mounts or the ID changes
   useEffect(() => {
     fetchCourseDetails();
   }, [id]);
 
+  // Show a loading message while the course details are being fetched
   if (!course) {
     return <div>Loading...</div>;
   }
@@ -66,7 +69,7 @@ function CourseDetails() {
         </ul>
       </div>
       <button 
-        onClick={() => navigate('/courses')}
+        onClick={() => navigate('/courses')} // Navigate back to the courses list
         className="course-details-button"
       >
         Zurück zu den Kursen

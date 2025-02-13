@@ -4,9 +4,9 @@ import axios from "axios";
 import "./Login.css"; // Import the CSS file for styling
 
 function Login() {
-    const [error, setError] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [error, setError] = useState(""); //State to store error messages
+    const [email, setEmail] = useState(""); //State to store the email input
+    const [password, setPassword] = useState(""); //State to store the password input
     const navigate = useNavigate(); //Hook for navigating to different routes programmatically
 
     useEffect(() => {

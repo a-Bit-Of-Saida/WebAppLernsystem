@@ -8,5 +8,5 @@ import edu.fra.uas.Course_Management.model.Course;
 
 @Repository
 public class CourseRepository extends HashMap<Long, Course> {
-//In die HashMap werden die Kurse gespeichert. Der Schlüssel ist die ID des Kurses (als long).
+// The courses are stored in the HashMap. The key is the ID of the course (as long).
 }

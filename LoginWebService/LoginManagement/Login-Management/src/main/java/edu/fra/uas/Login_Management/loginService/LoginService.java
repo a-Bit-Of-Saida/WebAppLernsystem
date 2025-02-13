@@ -17,7 +17,7 @@ public class LoginService {
     static {
         users.add(new User(1, "Student", "Merve", "Ciceck", "email@student.com", "password1234"));
         users.add(new User(2, "Admin", "Schneider", "Richt", "email@admin.com", "password5678"));
-        users.add(new User(3, "Student", "Leon", "Schmit", "email@student.com", "password9876"));
+        users.add(new User(3, "Student", "Leon", "Schmit", "email@student2.com", "password9876"));
     }
 
     // Method to verify login credentials

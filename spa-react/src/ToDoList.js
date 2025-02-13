@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import './ToDoList.css'; 
+import './ToDoList.css'; // Import the CSS file for styling
 
 function TodoList() {
-  const [todos, setTodos] = useState([]);
-  const [error, setError] = useState("");
-  const [editingTask, setEditingTask] = useState(null);
-  const [editedTask, setEditedTask] = useState({});
-  const [newTask, setNewTask] = useState({ title: "", description: "", status: "offen", dueDate: "" });
-  const [userId, setUserId] = useState(null);
-  const navigate = useNavigate();
+  const [todos, setTodos] = useState([]); // State to store the list of tasks
+  const [error, setError] = useState(""); // State to store error messages
+  const [editingTask, setEditingTask] = useState(null); // State to store the ID of the task being edited
+  const [editedTask, setEditedTask] = useState({}); // State to store the details of the task being edited
+  const [newTask, setNewTask] = useState({ title: "", description: "", status: "offen", dueDate: "" }); // State to store the details of the new task
+  const [userId, setUserId] = useState(null); // State to store the user ID
+  const navigate = useNavigate(); // Hook to navigate programmatically
     
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
@@ -45,7 +45,7 @@ function TodoList() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      setTodos(response.data.data.tasksByUserId || []);
+      setTodos(response.data.data.tasksByUserId || []); //Set the tasks in state
     } catch (error) {
       console.error("❌ Fehler beim Abrufen der Aufgaben:", error);
       setError("Fehler beim Abrufen der Aufgaben");
@@ -72,7 +72,7 @@ function TodoList() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      setTodos(response.data.data.taskDueToday || []);
+      setTodos(response.data.data.taskDueToday || []); // Set the tasks due today in state
     } catch (error) {
       console.error("❌ Fehler beim Abrufen der heute fälligen Aufgaben:", error);
       setError("Fehler beim Abrufen der heute fälligen Aufgaben");
@@ -105,8 +105,8 @@ function TodoList() {
         { headers: { "Content-Type": "application/json" } }
       );
 
-      setTodos([...todos, response.data.data.addTask]);
-      setNewTask({ title: "", description: "", status: "offen", dueDate: "" });
+      setTodos([...todos, response.data.data.addTask]); // Add the new task to the list
+      setNewTask({ title: "", description: "", status: "offen", dueDate: "" }); // Reset the new task form
     } catch (error) {
       console.error("❌ Fehler beim Hinzufügen der Aufgabe:", error);
       setError("Fehler beim Hinzufügen der Aufgabe: " + error.message);
@@ -140,13 +140,13 @@ function TodoList() {
         )
       );
 
-      setEditingTask(null);
+      setEditingTask(null); // Reset the editing state
     } catch (error) {
       console.error("❌ Fehler beim Aktualisieren der Aufgabe:", error);
       setError("Fehler beim Aktualisieren der Aufgabe: " + error.message);
     }
   };
-
+  //Function to delete a task
   const deleteTask = async (taskId) => {
     try {
       await axios.post(
@@ -167,13 +167,14 @@ function TodoList() {
           },
         }
       );
-      setTodos(todos.filter((todo) => todo.id !== taskId));
+      setTodos(todos.filter((todo) => todo.id !== taskId)); //Remove the deleted task from the list
     } catch (error) {
       console.error("Fehler beim Löschen der Aufgabe:", error);
       setError('Fehler beim Löschen der Aufgabe');
     }
   };
 
+  //Function to get the color based on the task status
   const getStatusColor = (status) => {
     return status === "offen" ? "green" : status === "in Bearbeitung" ? "orange" : "purple";
   };
