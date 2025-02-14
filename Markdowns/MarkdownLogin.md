@@ -78,8 +78,8 @@ Die `users`-Liste wird mit drei Mock-Benutzern vorab befüllt:
 | Rolle   | Vorname   | Nachname  | E-Mail               | Passwort       |
 |---------|-----------|-----------|----------------------|----------------|
 | Student | Merwe     | Ciceck    | email@student.com    | password1234   |
-| Amin    | User2     | User2     | email@admin.com       | password5678   |
-| Student | User3     | User3     | email@student2.com   | password9876   |
+| Admin    | Schneider     | Richt     | email@admin.com       | password5678   |
+| Student | Leon     | Schmit     | email@student2.com   | password9876   |
 
 ### Methoden
 
