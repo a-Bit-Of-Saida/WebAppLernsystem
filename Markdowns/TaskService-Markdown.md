@@ -101,23 +101,23 @@ task.setAssignee(1L); // Setzt die ID des zugewiesenen Benutzers
   "query": "query { taskDueToday { id title description assignee status dueDate } }"
     }
     ```
-**Antwort:**
-```json
-{
-  "data": {
-      "taskDueToday": [
-          {
-              "id": "5",
-              "title": "New Task",
-              "description": "Task description",
-              "assignee": "1",
-              "status": "offen",
-              "dueDate": "2025-02-09"
-          }
-      ]
+  **Antwort:**
+  ```json
+  {
+    "data": {
+        "taskDueToday": [
+            {
+                "id": "5",
+                "title": "New Task",
+                "description": "Task description",
+                "assignee": "1",
+                "status": "offen",
+                "dueDate": "2025-02-09"
+            }
+        ]
+    }
   }
-}
-```
+  ```
 - **POST** `/graphql`: Eine neue Aufgabe **hinzufügen**
     ```json
     {
@@ -185,7 +185,7 @@ task.setAssignee(1L); // Setzt die ID des zugewiesenen Benutzers
 
 
 
-**Hinweis:** Die Dollarzeichen (`$`) in den GraphQL-Requests sind Platzhalter für Variablen, die dynamische Werte in Abfragen und Mutationen einfügen und so eine flexible Datenverarbeitung ermöglichen.
+  **Hinweis:** Die Dollarzeichen (`$`) in den GraphQL-Requests sind Platzhalter für Variablen, die dynamische Werte in Abfragen und Mutationen einfügen und so eine flexible Datenverarbeitung ermöglichen.
 
 
 

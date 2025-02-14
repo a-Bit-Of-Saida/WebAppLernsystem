@@ -93,44 +93,24 @@ Der `CourseWebService` ist eine Spring Boot Anwendung, die es ermöglicht, Kurse
     "data": {
         "allCourses": [
             {
+                "id": "1",
+                "name": "Algebra",
+                "instructor": "Herr Müller"
+            },
+            {
                 "id": "2",
                 "name": "Analysis",
-                "description": "Mathe",
-                "instructor": "Frau Schmidt",
-                "files": [
-                    {
-                        "id": "3",
-                        "name": "Mathe Skript",
-                        "description": "Skript zur Vorlesung Mathematik"
-                    }
-                ]
+                "instructor": "Frau Schmidt"
             },
             {
                 "id": "3",
                 "name": "Business English",
-                "description": "English",
-                "instructor": "Frau Meyer",
-                "files": []
+                "instructor": "Frau Meyer"
             },
             {
                 "id": "4",
                 "name": "Spanish History",
-                "description": "Spanish",
-                "instructor": "Herr Gonzales",
-                "files": [
-                    {
-                        "id": "2",
-                        "name": "La Historia de España: Edad Moderna",
-                        "description": "Este es un PDF sobre el tema de la Historia de España."
-                    }
-                ]
-            },
-            {
-                "id": "5",
-                "name": "Einführung in die Mathematik",
-                "description": "Mathematik",
-                "instructor": "Dr. Müller",
-                "files": []
+                "instructor": "Herr Gonzales"
             }
         ]
     }

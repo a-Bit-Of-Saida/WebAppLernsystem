@@ -9,6 +9,9 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
 - [Funktionen](#funktionen)
 - [API Endpunkte](#api-endpunkte)
 - [Requests der Services](#requests-der-services)
+- [Sammlung aller Markdwons](#markdowns)
+- [Lernsystem - Demo](#lernsystem---demo)
+
   
 ## Installation
 
@@ -39,7 +42,7 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
    ```sh
    npm start
    ```
-2. Öffne deinen browser und navigiere zu `http://localhost:3000`.
+2. Öffne deinen browser und navigiere zu `http://localhost:3000` (dies geschieht in der Regel automatisch).
 
 ## Funktionen
 
@@ -93,7 +96,7 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
     "password": "password123"
    }
    ```
-- **GET** `/auth/users/1`: Deletes User
+- **DELETE** `/auth/users/1`: Deletes User
 ---
 ### Courses
 
@@ -198,5 +201,27 @@ Dieses Projekt beinhaltet eine Single Page Application (SPA) mit React. Ein API 
    }
     ```
 
+## Markdowns 
+- [Dokumentation](Markdowns/DokumentationMarkdown.md)
+- [API Gateway](Markdowns/APIGateway-Markdown.md)
+- [Systemarchitektur](Markdowns/MarkdownArchitektur.md)
+- [Login](Markdowns/MarkdownLogin.md)
+- [Course](Markdowns/CourseManagement-Markdown.md)
+- [Task](Markdowns/TaskService-Markdown.md)
+- [SPA mit React](Markdowns/SPA-React-Markdown.md)
 
-
+## Lernsystem - Demo
+### Startseite
+![Startseite](Markdowns/Picture/Startbildschirm_SPA.png)  
+### Login
+![Login](Markdowns/Picture/Login_SPA.png)
+### Dashboard
+![Dashoboard](Markdowns/Picture/Dashboard_SPA.png)
+### Kurse
+![Kurse](Markdowns/Picture/Kursservice_SPA.png)
+### Kursdetails
+![Kursdetails](Markdowns/Picture/Kursinhalt_SPA.png)
+### To-Do-Liste
+![To-Do-Liste](Markdowns/Picture/To-Do-List_SPA.png)
+### Kalender in der To-Do-Liste
+![Kalender in der To-Do-Liste](Markdowns/Picture/FälligkeitTask_SPA.png)

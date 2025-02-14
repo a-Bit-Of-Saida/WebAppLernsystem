@@ -1,14 +1,14 @@
 # User Stories
 
-## Benutzeranmeldung
+### Benutzeranmeldung
 
 Als Benutzer möchte ich mich mit meinen Anmeldeinformationen ( Rolle, Vorname und Nachname, E-Mail, Passwort) einloggen, um auf geschützte Bereiche der Anwendung zugreifen zu können.
 
-## Fehlerhafte Anmeldeversuche
+### Fehlerhafte Anmeldeversuche
 Als Benutzer möchte ich eine Fehlermeldung erhalten, wenn meine Anmeldeinformationen nicht korrekt sind, um zu wissen, dass ich die Eingaben überprüfen und korrigieren muss.
 
 
-## Zielsetzung für den Service
+### Zielsetzung für den Service
 Benutzeranmeldung validieren
 
 Als System möchte ich die Anmeldeinformationen eines Benutzers mit den gespeicherten Daten vergleichen, um sicherzustellen, dass der Benutzer korrekt authentifiziert ist.
@@ -78,8 +78,8 @@ Die `users`-Liste wird mit drei Mock-Benutzern vorab befüllt:
 | Rolle   | Vorname   | Nachname  | E-Mail               | Passwort       |
 |---------|-----------|-----------|----------------------|----------------|
 | Student | Merwe     | Ciceck    | email@student.com    | password1234   |
-| Prof    | User2     | User2     | email@prof.com       | password5678   |
-| Student | User3     | User3     | email@student2.com   | password5678   |
+| Amin    | User2     | User2     | email@admin.com       | password5678   |
+| Student | User3     | User3     | email@student2.com   | password9876   |
 
 ### Methoden
 
